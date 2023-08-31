@@ -1,0 +1,7 @@
+1. zbog toga sto sam radi mogucnosti boljeg testiranja unosila jos podataka, korisnika, konkursa za prakse i poslove u bazu sajta, prilazem i folder sa bazom tako promenjenom da biste prilikom provere mog testiranja mogli dobiti iste rezultate.
+
+2. Posto se svi testovi koje sam izvrsavala u Selenium IDE-u odnose na registraciju korisnika i posto sistem uspesno registruje i neke korisnike koje ne  bi trebalo uspesno registrovati vec ispisati poruku o neuspesnoj registraciji zbog nevalidnih parametara, mora se uraditi jedna od sledece dve opcije za te test primere:
+
+a) u takvim test primerima i u onima koji ilustruju uspesnu registraciju se u Selenium-u pre ponovnog izvrsavanja moraju promeniti korisnicka imena u .side fajlovima tako da ne postoje vec u sistemu, posto kada sam prvi put izvrsila te test primere ona nisu postojala pa sad postoje, a preduslov za date test primere je da takvo korisniko ime ne postoji vec u sistemu 
+
+b) ovi test primeri se mogu izvrsavati na sajtu sa originalnom bazom podataka, gde ta korisnicka imena ne postoje u bazi

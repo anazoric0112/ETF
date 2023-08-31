@@ -1,0 +1,41 @@
+Sifre za pristupanje korisnicima: baza podataka jobfair2.sql
+-----------------------
+Administrator
+
+username: stevica
+password: Admin123.
+
+username: tviti
+password: Admin123.
+------------------------
+Studenti:
+
+username: aleksa
+sifra: Sifra1234$
+
+username: bule
+sifra: Sifra1234$
+
+username: jeca
+sifra: Sifra1234$
+
+username: micika
+sifra: Sifra1234$
+
+username: miki8888
+sifra: Sifra1234$
+
+-------------------------
+Kompanije:
+
+username: pericadj
+sifra: Sifra123$
+
+username: milivoje
+sifra: Sifra123$
+
+username: mikazika
+sifra: Sifra123$
+
+username: aperitiv
+sifra: Sifra123$

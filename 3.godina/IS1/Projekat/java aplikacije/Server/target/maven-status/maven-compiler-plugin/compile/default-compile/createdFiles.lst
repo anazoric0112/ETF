@@ -1,0 +1,9 @@
+com\mycompany\server\resources\TransakcijeResource.class
+com\mycompany\server\resources\Kraj.class
+com\mycompany\server\resources\NarudzbineResource.class
+com\mycompany\server\resources\GradoviResource.class
+com\mycompany\server\resources\ArtikliResource.class
+com\mycompany\server\resources\KorisniciResource.class
+com\mycompany\server\resources\KorpeResource.class
+com\mycompany\server\JAXRSConfiguration.class
+com\mycompany\server\resources\KategorijeResource.class

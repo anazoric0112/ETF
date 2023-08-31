@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Tests.operaNU]" verbose="0">
+  <test thread-count="5" name="Command line test(failed)" verbose="0">
+    <classes>
+      <class name="Tests.operaNU">
+        <methods>
+          <include name="LoginNU4"/>
+          <include name="setUpMethod"/>
+          <include name="LoginNU1"/>
+          <include name="tearDownClass"/>
+          <include name="LoginNU3"/>
+          <include name="LoginNU2"/>
+          <include name="setUpClass"/>
+          <include name="tearDownMethod"/>
+        </methods>
+      </class> <!-- Tests.operaNU -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [Tests.operaNU] -->

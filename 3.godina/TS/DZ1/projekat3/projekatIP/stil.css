@@ -1,0 +1,53 @@
+body{
+	background-color:chocolate;
+}
+#headerK{
+	color:brown;
+	font-size:30px;
+	
+	text-align:center;
+}
+#tabela1{
+	width:101%;
+	margin-top:-10px;
+	background-color:orange;
+	margin-left:-10px
+	
+}
+#slika1{
+	width:100px;
+	height:50px;
+}
+#tabela2{
+	position:fixed;
+	left:0;
+	bottom:0;
+	width:100%;
+	background-color:orange;
+}
+#footerK{
+	color:brown;
+}
+#meniS{
+	color:brown;
+	background-color:orange;
+	height:7%;
+	width:101%;
+	margin-left:-10px;
+	text-align:center;
+	
+}
+#dobrodosao{
+	text-align:center;
+	font-size:50;
+	color:orange;
+}
+#registruj{
+        color:orange;
+        text-align:center;
+}
+#regstudent1{
+    color:orange;
+    text-align:center;
+    font-size:30;
+}
