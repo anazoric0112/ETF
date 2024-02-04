@@ -1,0 +1,407 @@
+
+package rs.ac.bg.etf.pp1;
+
+import java_cup.runtime.*;
+import org.apache.log4j.*;
+import rs.ac.bg.etf.pp1.ast.*;
+
+parser code {:
+
+	Logger log = Logger.getLogger(getClass());
+    // slede redefinisani metodi za prijavu gresaka radi izmene teksta poruke
+
+    public void report_fatal_error(String message, Object info) throws java.lang.Exception {
+      done_parsing();
+      report_error(message, info);
+    }
+
+    public void syntax_error(Symbol cur_token) {
+        report_error("\nSintaksna greska", cur_token);
+    }
+
+    public void unrecovered_syntax_error(Symbol cur_token) throws java.lang.Exception {
+        report_fatal_error("Fatalna greska, parsiranje se ne moze nastaviti", cur_token);
+    }
+
+    public void report_error(String message, Object info) {
+    	StringBuilder msg = new StringBuilder(message);
+    	if (info instanceof Symbol)
+            msg.append (" na liniji ").append(((Symbol)info).left);
+        log.error(msg.toString());
+    }
+:}
+
+scan with {:
+	Symbol s = this.getScanner().next_token();
+	if (s != null && s.value != null)
+		log.info(s.toString() + " " + s.value.toString());
+	return s;
+:}
+
+terminal PROG, BREAK, CLASS, ELSE, CONST, IF, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE, FOR, STATIC, NAMESPACE;
+terminal PLUS, MINUS, MUL, DIV, MOD, EQUAL, INC, DEC;
+terminal EQ, NEQ, GT, GTE, LT, LTE, AND, OR;
+terminal SEMICOLON, COLON, COMMA, DOT, ARROW;
+terminal LBRACE, RBRACE, LBRACKET, RBRACKET, LPAREN, RPAREN;
+terminal Boolean BOOL_CONST;
+terminal Character CHAR_CONST;
+terminal String IDENT;
+terminal Integer NUM_CONST;
+
+nonterminal NamespaceList, List, ConstDeclList, StaticDeclList;
+nonterminal MethodDeclListClass, MethodDeclList, MethodDeclParams, MethodBegin;
+nonterminal VarDeclOrNot;
+nonterminal StaticInitializerList, StaticOrNot, StaticVars, StaticInitializerOrNot, StaticInitializerStart, StaticInitializerEnd;
+nonterminal ForInit, ForAfter, ForStatements, ForDesignatorStatementList, StatementList, IfWord, ElseBegin, ForWord;
+nonterminal DesignatorStatementList, DesignatorStatementListMemberOrNot, DesignatorEqStmtStart;
+nonterminal ActPars, ActParsList, FormParsOrNot, FormPars;
+nonterminal Assignop, Relop, Addop, Mulop;
+nonterminal ErrorSign;
+
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgramName, Program;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName, NamespaceSingle;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj DesignatorNamespaceName, DesignatorName, 
+            Designator, DesignatorExpr, DesignatorIdent, DesignatorCall, ConstructorCall;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj TypeName, TypeNamespace, FactorType;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj VarDeclList, VarDecl, VarDeclSingle, VarType, Type;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstVar, ConstName, ConstType, ConstDecl;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodDecl, MethodName, MethodType;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj FormPar, FormParName, FormParType;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassName, ExtendsOrNot;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj StaticVarDecl, StaticInitializer, StaticWord;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Statement, IfCond, ForCondFact, DesignatorStatement, DesignatorAssignedArray;
+
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Term, Factor, Expr;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct CondFact, CondFactExpr1, CondFactExpr2, Condition, CondTerm, ActParSingle;
+
+precedence left ELSE;
+
+Program ::= 
+    (Program) PROG ProgramName:p NamespaceList List LBRACE MethodDeclList RBRACE;
+
+ProgramName ::= 
+    (ProgramName) IDENT:programName;
+
+NamespaceSingle ::= 
+    (NamespaceSingle) NAMESPACE NamespaceName:n LBRACE List LBRACE MethodDeclList RBRACE RBRACE;
+
+NamespaceName ::= 
+    (NamespaceName) IDENT:namespaceName;
+
+NamespaceList ::= 
+    (NamespaceListLast) /* epsilon */
+    | (NamespaceListMore) NamespaceList NamespaceSingle;
+
+ConstDecl ::= 
+    (ConstDecl) CONST ConstType:c ConstDeclList SEMICOLON;
+
+ConstType ::= 
+    (ConstType) Type:typeName;
+
+ConstDeclList ::= 
+    (ConstDeclLast) ConstName:c EQUAL ConstVar:cv
+    | (ConstDeclMore) ConstDeclList COMMA ConstName:c EQUAL ConstVar:cv;
+
+ConstName ::= 
+    (ConstName) IDENT:name;
+
+ConstVar ::= 
+    (NumConst) NUM_CONST:name
+    | (CharConst) CHAR_CONST:name
+    | (BoolConst) BOOL_CONST:name;
+    
+List ::= 
+    (ListVarDecl) List VarDecl
+    | (ListConstDecl) List ConstDecl
+    | (ListClassDecl) List ClassDecl
+    | (EmptyDeclList) /* epsilon */;
+
+ClassDecl ::= 
+    (ClassDecl) CLASS ClassName ExtendsOrNot StaticOrNot VarDeclOrNot MethodDeclListClass RBRACE;
+
+ClassName ::= 
+    (ClassName) IDENT:className;
+
+ExtendsOrNot ::= 
+    (ExtendsYes) EXTENDS Type LBRACE
+    | (ExtendsNot) /* epsilon */ LBRACE
+    | (ErrorExtends) error LBRACE:l
+    {: parser.report_error("Izvrsen oporavak do { u liniji " + lleft, null);  :};
+
+StaticOrNot ::= 
+    (StaticVarsYes) StaticVarDecl StaticVars StaticInitializerOrNot
+    // | (StaticVarsNot) STATIC LBRACE StatementList RBRACE StaticInitializerList
+    | (StaticVarsNot) StaticInitializerList
+    | (StaticNot) /* epsilon */;
+
+StaticVars ::= 
+    (StaticVarsLast) /* epsilon */
+    | (StaticVarsMore) StaticVars StaticVarDecl;
+
+StaticVarDecl ::= 
+    (StaticVarDecl) StaticWord VarDecl;
+
+StaticWord ::= 
+    (StaticWord) STATIC;
+
+StaticInitializerOrNot ::= 
+    (StaticInitializerYes) StaticInitializerList
+    | (StaticInitializerNo) /* epsilon */;
+
+StaticDeclList ::= 
+    (StaticDeclListLast) /* epsilon */
+    | (StaticDeclListMore) StaticDeclList StaticWord VarDecl;
+
+MethodDeclListClass ::= 
+    (MethodDeclListClassYes) LBRACE MethodDeclList RBRACE
+    | (MethodDeclListClassNo) /* epsilon */;
+
+StaticInitializer ::= 
+    (StaticInitializer) StaticWord StaticInitializerStart StatementList StaticInitializerEnd;
+
+StaticInitializerStart ::=
+    (StaticInitializerStart) LBRACE;
+
+StaticInitializerEnd ::=
+    (StaticInitializerEnd) RBRACE;
+
+StaticInitializerList ::= 
+    (StaticInitializerListLast) StaticInitializer
+    | (StaticInitializerListMore) StaticInitializerList StaticInitializer;
+
+MethodDeclList ::= 
+    (MethodDeclLast) /* epsilon */
+    | (MethodDeclMore) MethodDeclList MethodDecl;
+
+MethodDecl ::= 
+    (MethodDecl) MethodDeclParams VarDeclOrNot MethodBegin StatementList RBRACE;
+
+MethodBegin ::=
+    (MethodBegin) LBRACE;
+
+MethodDeclParams ::= 
+    (MethodDeclParamsOk)  MethodType:mt MethodName:mn LPAREN FormParsOrNot RPAREN 
+    | (ErrorMethodDecl) error RPAREN:l
+    {: parser.report_error("Izvrsen oporavak do ) u liniji " + lleft, null);  :};
+
+MethodName ::= 
+    (MethodName) IDENT:name;
+
+MethodType ::= 
+    (VoidMethodType) VOID
+    | (TypeMethodType) Type:typeName;
+
+FormParsOrNot ::= 
+    (FormParsYes) FormPars 
+    | (FormParsNot) /* epsilon */;
+
+FormPars ::= 
+    (FormParsLast) FormPar
+    | (FormParsMore) FormPars COMMA FormPar;
+
+FormPar ::= 
+    (FormParArray) FormParType:t FormParName:n LBRACKET RBRACKET
+    | (FormParNotArray) FormParType:t FormParName:n;
+
+FormParName ::= 
+    (FormParName) IDENT:name;
+
+FormParType ::= 
+    (FormParType) Type:name;
+
+Statement ::= 
+    (StatementDesignator) DesignatorStatement SEMICOLON
+    | (ErrorAssignSemicolon) error SEMICOLON:l
+    {: parser.report_error("Izvrsen oporavak do ; u liniji " + lleft, null);  :}
+    | (StatementIf) IfWord IfCond Statement
+    | (StatementIfElse) IfWord IfCond Statement ElseBegin Statement
+    | (StatementBreak) BREAK SEMICOLON
+    | (StatementContinue) CONTINUE SEMICOLON
+    | (StatementReturnExpr) RETURN Expr SEMICOLON
+    | (StatementReturn) RETURN SEMICOLON
+    | (StatementRead) READ LPAREN Designator RPAREN SEMICOLON
+    | (StatementPrintNoNum) PRINT LPAREN Expr RPAREN SEMICOLON
+    | (StatementPrintNum) PRINT LPAREN Expr COMMA NUM_CONST RPAREN SEMICOLON
+    | (Statements) LBRACE StatementList RBRACE
+    | (StatementFor) ForWord LPAREN ForInit SEMICOLON ForCondFact SEMICOLON ForAfter RPAREN Statement;
+
+ElseBegin ::=
+    (ElseBegin) ELSE;
+
+ForWord ::=
+    (ForWord) FOR;
+
+IfWord ::=
+    (IfWord) IF;
+
+IfCond ::= 
+    (IfCondOk) LPAREN Condition RPAREN
+    | (ErrorIf) error RPAREN:l
+    {: parser.report_error("Izvrsen oporavak do ) u liniji " + lleft, null);  :};
+
+ForInit ::= 
+    (ForInitEmpty) /* epsilon */
+    | (ForInitNotEmpty) ForDesignatorStatementList;
+
+ForAfter ::=
+   (ForAfterEmpty) /* epsilon */
+   | (ForAfterNotEmpty) ForDesignatorStatementList;
+
+ForCondFact ::= 
+    (ForCondFactEmpty) /* epsilon */
+    | (ForCondFactNotEmpty) CondFact;
+
+ForDesignatorStatementList ::= 
+    (ForDesignatorStatementListLast) DesignatorStatement
+    | (ForDesignatorStatementListMore) ForDesignatorStatementList COMMA DesignatorStatement;
+
+StatementList ::= 
+    (StatementListLast) /* epsilon */
+    | (StatementListMore) StatementList Statement;
+
+DesignatorStatement ::=
+    (DesignatorStmtAssign) Designator Assignop Expr
+    | (DesignatorStmtAct) DesignatorCall LPAREN ActPars RPAREN
+    | (DesignatorStmtInc) Designator INC
+    | (DesignatorStmtDec) Designator DEC
+    | (DesignatorEqStmt) DesignatorEqStmtStart DesignatorStatementList MUL Designator RBRACKET EQUAL DesignatorAssignedArray;
+
+DesignatorEqStmtStart ::=
+    (DesignatorEqStmtStart) LBRACKET;
+
+DesignatorAssignedArray ::=
+    (DesignatorAssignedArray) Designator;
+
+DesignatorStatementList ::=
+    (DesignatorStatementListLast) /* epsilon */
+    | (DesignatorStatementListMore) DesignatorStatementList DesignatorStatementListMemberOrNot COMMA;
+
+DesignatorStatementListMemberOrNot ::=
+    (DesignatorStatementListMemberYes) Designator
+    | (DesignatorStatementListMemberNot) /* epsilon */;
+
+VarDeclOrNot ::= 
+    (VarDeclYes) VarDeclOrNot VarDecl
+    | (VarDeclNo) /* epsilon */;
+
+VarDecl ::= 
+    (VarDeclOk) VarType:vt VarDeclList VarDeclSingle:vds SEMICOLON
+    | (ErrorVarDeclComma) ErrorSign;
+
+VarType ::= 
+    (VarType) Type:varTypeName;
+
+ErrorSign ::= 
+    (ErrorSignComma) error COMMA:l
+    {: parser.report_error("Izvrsen oporavak do , u liniji " + lleft, null);  :}
+    | (ErrorSignLbrace) error LBRACE:l
+    {: parser.report_error("Izvrsen oporavak do { u liniji " + lleft, null);  :}
+    | (ErrorSignSEMICOLON) error SEMICOLON:l
+    {: parser.report_error("Izvrsen oporavak do ; u liniji " + lleft, null);  :};
+
+VarDeclList ::= 
+    (VarDeclListLast) /* epsilon */
+    | (VarDeclListMore) VarDeclList VarDeclSingle:vds COMMA;
+
+VarDeclSingle ::= 
+    (VarDeclSingleArray) IDENT:varName LBRACKET RBRACKET
+    | (VarDeclSingleNotArray) IDENT:varName;
+
+Condition ::= 
+    (ConditionLast) CondTerm
+    | (ConditionMore) Condition OR CondTerm;
+
+CondTerm ::= 
+    (CondTermLast) CondFact
+    | (CondTermMore) CondTerm AND CondFact;
+
+CondFact ::= 
+    (CondFactSingle) Expr
+    | (CondFactMultiple) CondFactExpr1 Relop CondFactExpr2;
+
+CondFactExpr1 ::= 
+    (CondFactExpr1) Expr;
+
+CondFactExpr2 ::= 
+    (CondFactExpr2) Expr;
+
+ActPars ::= 
+    (ActParsEmpty) /* epsilon */
+    | (ActParsNotEmpty) ActParsList;
+
+ActParsList ::= 
+    (ActParsListLast) ActParSingle:a
+    | (ActParsListMore) ActParsList COMMA ActParSingle:a;
+
+ActParSingle ::= 
+    (ActParSingle) Expr:e;
+
+Type ::= 
+    (TypeNamespaceYes) TypeNamespace:tn COLON COLON TypeName:t
+    | (TypeNamespaceNo) TypeName:t;
+
+TypeName ::= 
+    (TypeName) IDENT:typeName;
+
+TypeNamespace ::= 
+    (TypeNamespace) IDENT:namespace;
+
+Expr ::= 
+    (ExprLastMinus) MINUS Term:t 
+    | (ExprLast) Term:t 
+    | (ExprMore) Expr:e Addop Term:t;
+
+Term ::= 
+    (TermLast) Factor:f 
+    | (TermMore) Term:t Mulop Factor:f;
+
+Factor ::= 
+    (FactorDesignatorAct) DesignatorCall LPAREN ActPars RPAREN
+    | (FactorDesignatorNoAct) Designator
+    | (FactorNum) NUM_CONST
+    | (FactorChar) CHAR_CONST
+    | (FactorBool) BOOL_CONST
+    | (FactorNewExpr) NEW Type:t LBRACKET Expr:e RBRACKET
+    | (FactorNewAct) NEW ConstructorCall LPAREN ActPars:a RPAREN 
+    | (FactorExpr) LPAREN Expr:e RPAREN;
+
+ConstructorCall ::=
+    (ConstructorCall) Type;
+
+DesignatorCall ::=
+    (DesignatorCall) Designator;
+
+Designator ::= 
+    (DesignatorNamespace) DesignatorNamespaceName:d COLON COLON DesignatorName:dn
+    | (DesignatorNoNamespace) DesignatorName:dn
+    | (DesignatorExprStmt) Designator:d LBRACKET Expr:e RBRACKET
+    | (DesignatorIdentStmt) Designator:d DOT DesignatorIdent;
+
+DesignatorIdent ::= 
+    (DesignatorIdent) IDENT:ident;
+
+DesignatorNamespaceName ::= 
+    (DesignatorNamespaceName) IDENT:NamespaceName;
+
+DesignatorName ::= 
+    (DesignatorName) IDENT:DesignatorName;
+
+Assignop ::= 
+    (Assignop) EQUAL;
+
+Relop ::= 
+    (RelopEq) EQ
+    | (RelopNeq) NEQ
+    | (RelopGt) GT
+    | (RelopGte) GTE
+    | (RelopLt) LT
+    | (RelopLte) LTE;
+    
+Addop ::= 
+    (AddopPlus) PLUS
+    | (AddopMinus) MINUS;
+
+Mulop ::= 
+    (MulopMul) MUL
+    | (MulopDiv) DIV
+    | (MulopMod) MOD;
