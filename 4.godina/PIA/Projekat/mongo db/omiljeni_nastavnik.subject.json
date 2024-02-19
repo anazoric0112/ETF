@@ -1,0 +1,224 @@
+[{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3fe"
+  },
+  "name": "Mathematics",
+  "teachers": [
+    "n1",
+    "n4"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3ff"
+  },
+  "name": "Physics",
+  "teachers": [
+    "n1",
+    "n2"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca400"
+  },
+  "name": "Chemistry",
+  "teachers": [
+    "n1",
+    "n4"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca401"
+  },
+  "name": "Informatics",
+  "teachers": [
+    "n2",
+    "n4",
+    "n6"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca402"
+  },
+  "name": "Programming",
+  "teachers": [
+    "n2",
+    "n4"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca403"
+  },
+  "name": "Serbian",
+  "teachers": [
+    "n2",
+    "n1"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca406"
+  },
+  "name": "Italian",
+  "teachers": [
+    "n1",
+    "n2"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca407"
+  },
+  "name": "French",
+  "teachers": [
+    "n2",
+    "n6"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca408"
+  },
+  "name": "Spanish",
+  "teachers": [
+    "n4",
+    "n1"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca409"
+  },
+  "name": "Latin",
+  "teachers": [
+    "n2"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca40a"
+  },
+  "name": "Biology",
+  "teachers": [
+    "n1",
+    "n4"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca40b"
+  },
+  "name": "History",
+  "teachers": [
+    "n2",
+    "n4",
+    "n6"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca40c"
+  },
+  "name": "Geography",
+  "teachers": [
+    "n1",
+    "n2"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca40d"
+  },
+  "name": "World around us",
+  "teachers": [
+    "n4",
+    "n6"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca40e"
+  },
+  "name": "Art",
+  "teachers": [
+    "n6"
+  ],
+  "accepted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca40f"
+  },
+  "name": "Music",
+  "teachers": [
+    "n2"
+  ],
+  "accepted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca410"
+  },
+  "name": "Cocktails",
+  "teachers": [
+    "n3"
+  ],
+  "accepted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca404"
+  },
+  "name": "English",
+  "teachers": [
+    "n6"
+  ],
+  "accepted": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca405"
+  },
+  "name": "German",
+  "teachers": [
+    "n4"
+  ],
+  "accepted": true,
+  "__v": 0
+}]

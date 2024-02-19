@@ -1,0 +1,125 @@
+
+<div class="row">
+<div class="card-content col-sm-8">
+    <h1>My information</h1><br><br> 
+<table *ngIf="!change;">
+    <tr>
+        <td>Name</td>
+        <td>{{teacher.name}}</td>
+        <td rowspan="2"><img class="user_pic" src={{path}}></td>
+    </tr>
+    <tr>
+        <td>Surname</td>
+        <td>{{teacher.surname}}</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td> {{teacher.address}} </td>
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <td>{{teacher.phone}} </td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{teacher.email}} </td>
+    </tr>
+    <tr>
+        <td>Subjects</td>
+        <td>
+            <div *ngFor="let s of teacher.subjects">
+                {{s}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>Age groups</td>
+        <td>
+            <div *ngFor="let s of teacher.ages">
+                {{s}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button (click)="change=true">Change data</button>
+        </td>
+    </tr>
+</table>
+
+
+<table *ngIf="change;">
+    <tr>
+        <td>Profile picture</td>
+        <input type="file" class="file-upload" 
+        requiredFileType="image/png" 
+        (change)="onFileSelected($event)">
+    </tr>
+    <tr>
+        <td>Name</td>
+        <input type="text" [(ngModel)]="teacher.name">
+    </tr>
+    <tr>
+        <td>Surname</td>
+        <input type="text" [(ngModel)]="teacher.surname">
+    </tr>
+    <tr>
+        <td>Address</td>
+        <input type="text" [(ngModel)]="teacher.address">
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <input type="text" [(ngModel)]="teacher.phone">
+    </tr>
+    <tr>
+        <td>Email</td>
+        <input type="text" [(ngModel)]="teacher.email">
+    </tr>
+    <tr>
+        <td>Subjects</td>
+        <td >
+            <div *ngFor="let s of subjects">
+                <input type="checkbox" name="subjects" value={{s}} [checked]="teacher.subjects.includes(s)">{{s}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>Age groups</td>
+        <td>
+            <input type="checkbox" name="ages" value="1-4" [checked]="teacher.ages.includes('1-4')">Primary school 1-4. grade
+            <br>
+            <input type="checkbox" name="ages" value="5-8" [checked]="teacher.ages.includes('5-8')">Primary school 5-8. grade
+            <br>
+            <input type="checkbox" name="ages" value="9-12" [checked]="teacher.ages.includes('9-12')">High school
+            <br>
+        </td>
+    </tr>
+    <td>
+        <button (click)="change=false">Go back</button>
+    </td>
+    <td>
+        <button (click)="changeData()">Apply changes</button>
+    </td>
+</table>
+
+<div>{{msg}}</div>
+</div>
+
+<div class="col-sm-3">
+    <div *ngIf="!show_pw1 && !show_pw2" class="card-content ">
+        <h1>Change passowrd</h1><br><br>
+        <button (click)="show_pw1=true">Remember old password?</button>
+        <br><br>
+        <button (click)="show_pw2=true">Can't remember?</button>
+        <br><br>
+    </div>
+
+    <app-password-reset *ngIf="show_pw1" [user]="teacher"></app-password-reset>
+    <app-password-reset-home *ngIf="show_pw2" [user]="teacher"></app-password-reset-home>
+    <br><br>
+    <div  *ngIf="show_pw1 || show_pw2" class="card-content">
+        <button (click)="show_pw1=false; show_pw2=false">Go back</button>
+    </div>
+</div>
+</div>

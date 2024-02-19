@@ -1,0 +1,413 @@
+[{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f0"
+  },
+  "username": "admin",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana",
+  "surname": "zoric",
+  "gender": "female",
+  "type": "admin",
+  "subjects": [],
+  "ages": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f1"
+  },
+  "username": "ana0",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana0",
+  "surname": "zoric0",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "ana.zoric@gmail.com",
+  "school_type": "Primary school",
+  "year": 1,
+  "type": "student",
+  "subjects": [],
+  "ages": [],
+  "cv": "",
+  "photo": "",
+  "avg_grade": 3,
+  "num_grades": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f2"
+  },
+  "username": "ana1",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana1",
+  "surname": "zoric1",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "a1@gmail.com",
+  "school_type": "Grammar school",
+  "year": 2,
+  "type": "student",
+  "subjects": [],
+  "ages": [],
+  "cv": "",
+  "photo": "",
+  "avg_grade": 2.5,
+  "num_grades": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f3"
+  },
+  "username": "ana2",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana2",
+  "surname": "zoric2",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "a2@gmail.com",
+  "school_type": "Grammar school",
+  "year": 3,
+  "type": "student",
+  "subjects": [],
+  "ages": [],
+  "cv": "",
+  "photo": "",
+  "avg_grade": 4.9,
+  "num_grades": 9,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f4"
+  },
+  "username": "ana3",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana3",
+  "surname": "zoric3",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "a3@gmail.com",
+  "school_type": "Grammar school",
+  "year": 4,
+  "type": "student",
+  "subjects": [],
+  "ages": [],
+  "cv": "",
+  "photo": "",
+  "avg_grade": 4.3,
+  "num_grades": 12,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f5"
+  },
+  "username": "ana4",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana4",
+  "surname": "zoric4",
+  "gender": "male",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "a4@gmail.com",
+  "school_type": "Primary school",
+  "year": 5,
+  "type": "student",
+  "subjects": [],
+  "ages": [],
+  "cv": "",
+  "photo": "",
+  "avg_grade": 4.2,
+  "num_grades": 6,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f6"
+  },
+  "username": "ana5",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana5",
+  "surname": "zoric5",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "a5@gmail.com",
+  "school_type": "Grammar school",
+  "year": 2,
+  "type": "student",
+  "subjects": [],
+  "ages": [],
+  "cv": "",
+  "photo": "",
+  "avg_grade": 4,
+  "num_grades": 8,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f7"
+  },
+  "username": "ana6",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "ana6",
+  "surname": "zoric6",
+  "gender": "male",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "a6@gmail.com",
+  "school_type": "Primary school",
+  "year": 8,
+  "type": "student",
+  "subjects": [],
+  "ages": [],
+  "cv": "",
+  "photo": "",
+  "avg_grade": 5,
+  "num_grades": 7,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f8"
+  },
+  "username": "n1",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "Marko1",
+  "surname": "Ilic1",
+  "gender": "male",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "t1@gmail.com",
+  "type": "teacher",
+  "accepted": 1,
+  "subjects": [
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Serbian",
+    "Italian",
+    "Spanish",
+    "Biology",
+    "Geography"
+  ],
+  "additional_subject": "",
+  "ages": [
+    "1-4",
+    "5-8"
+  ],
+  "heard_from": "ne secam se",
+  "cv": "",
+  "photo": "",
+  "avg_grade": 4,
+  "num_grades": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3f9"
+  },
+  "username": "n2",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "Marko3",
+  "surname": "Ilic3",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "t3@gmail.com",
+  "type": "teacher",
+  "accepted": 1,
+  "subjects": [
+    "Physics",
+    "Informatics",
+    "Programming",
+    "Serbian",
+    "Italian",
+    "French",
+    "Latin",
+    "History",
+    "Geography"
+  ],
+  "additional_subject": "Music",
+  "ages": [
+    "9-12"
+  ],
+  "heard_from": "ne secam se",
+  "cv": "",
+  "photo": "",
+  "avg_grade": 3.5,
+  "num_grades": 12,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3fa"
+  },
+  "username": "n3",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "Marko2",
+  "surname": "Ilic2",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "t2@gmail.com",
+  "type": "teacher",
+  "accepted": 0,
+  "subjects": [
+    "Programming",
+    "English",
+    "German",
+    "Italian",
+    "Spanish",
+    "Serbian"
+  ],
+  "additional_subject": "Cocktails",
+  "ages": [
+    "1-4"
+  ],
+  "heard_from": "ne secam se",
+  "cv": "",
+  "photo": "",
+  "avg_grade": 4.2,
+  "num_grades": 8,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3fc"
+  },
+  "username": "n5",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "Stefan",
+  "surname": "Stefanovic",
+  "gender": "male",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "t5@gmail.com",
+  "type": "teacher",
+  "accepted": 0,
+  "subjects": [
+    "Chemistry",
+    "Serbian",
+    "English",
+    "German",
+    "Latin",
+    "Biology"
+  ],
+  "additional_subject": "",
+  "ages": [
+    "1-4",
+    "5-8",
+    "9-12"
+  ],
+  "heard_from": "ne secam se",
+  "cv": "",
+  "photo": "",
+  "avg_grade": 4.9,
+  "num_grades": 18,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3fb"
+  },
+  "username": "n4",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "Marko4",
+  "surname": "Ilic4",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "t4@gmail.com",
+  "type": "teacher",
+  "accepted": 1,
+  "subjects": [
+    "Mathematics",
+    "Chemistry",
+    "Informatics",
+    "Programming",
+    "German",
+    "Spanish",
+    "Biology",
+    "History",
+    "World around us"
+  ],
+  "additional_subject": "",
+  "ages": [
+    "5-8",
+    "9-12"
+  ],
+  "heard_from": "ne secam se",
+  "cv": "",
+  "photo": "",
+  "avg_grade": 5,
+  "num_grades": 3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3fd"
+  },
+  "username": "n6",
+  "password": "$argon2id$v=19$m=6000,t=3,p=1$SWcwbGxEZEVkYkNBaUVNQQ$7rgDeJaWI/7YfFQUb9E5Yy7YJiyklCHoyuCC0YbzHEc",
+  "sec_question": "koliko imam godina",
+  "sec_answer": "22",
+  "name": "Luka",
+  "surname": "Lukic",
+  "gender": "female",
+  "address": "Tome Rosandica",
+  "phone": "0603144447",
+  "email": "t6@gmail.com",
+  "type": "teacher",
+  "accepted": 1,
+  "subjects": [
+    "Informatics",
+    "English",
+    "French",
+    "History",
+    "World around us"
+  ],
+  "additional_subject": "Art",
+  "ages": [
+    "5-8",
+    "9-12"
+  ],
+  "heard_from": "ne secam se",
+  "cv": "",
+  "photo": "",
+  "avg_grade": 5,
+  "num_grades": 3,
+  "__v": 0
+}]

@@ -1,0 +1,16 @@
+<div class="card-content">
+<h1>Login</h1><br><br>
+<table>
+<input type="text" placeholder="username" [(ngModel)]="user.username">
+<input type="password" placeholder="password" [(ngModel)]="user.password">
+<br>
+<button (click)="login()" class="btn-red">Log in</button>
+<br><br>
+
+<!-- Password reset -->
+<div (click)="router.navigate(['password_reset_home'])" class="nav-link">Forgot password?</div><br>
+
+<br><br>
+<p class="error">{{msg}}</p>
+</table>
+</div>

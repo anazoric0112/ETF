@@ -1,0 +1,42 @@
+<div class="card-content">
+<h3>Teacher information</h3><br><br>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>{{teacher.name}}</td>
+        <td rowspan="2"><img class="user_pic" src={{path}}></td>
+    </tr>
+    <tr>
+        <td>Surname</td>
+        <td>{{teacher.surname}}</td>
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <td>{{teacher.phone}} </td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{teacher.email}} </td>
+    </tr>
+    <tr>
+        <td>Subjects</td>
+        <td>
+            <div *ngFor="let s of teacher.subjects">
+                {{s}}
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
+<br>
+<div class="card-content">
+<h3>Comments</h3><br><br>
+<div *ngFor="let comment of comments">
+    {{comment.by}}:         
+    <img class="arrow" *ngFor="let star of comment.stars" src={{star}}>
+    {{comment.grade}}
+    <br>
+    {{comment.comment}}
+    <hr>
+</div>
+</div>

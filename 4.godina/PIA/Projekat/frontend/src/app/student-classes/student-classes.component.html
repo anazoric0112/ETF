@@ -1,0 +1,71 @@
+
+<div class="card-content">
+<h2>Classes held
+    <img *ngIf="!show_held" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_held=true">
+    <img *ngIf="show_held" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_held=false"></h2><br>
+<table *ngIf="show_held">
+    <tr>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Teacher</th>
+        <th>Subject</th>
+        <th>Teacher comment</th>
+        <th>Your comment</th>
+    </tr>
+    <tr *ngFor="let c of classes_held">
+        <td>{{c.start_time}}</td>
+        <td>{{c.end_time}}</td>
+        <td><a (click)="go_to_profile(c.teacher)">{{c.teacher}}</a></td>
+        <td>{{c.subject}}</td>
+        <td *ngIf="c.grade_t!=-1">{{c.grade_t}} - {{c.comment_t}}</td>
+        <td *ngIf="c.grade_t<0"></td>
+
+        <td *ngIf="c.grade_s>=0">
+            {{c.grade_s}} - {{c.comment_s}}
+        </td>
+        <td *ngIf="c.grade_s<0 && !c.form_opened">
+            <button (click)="open_form(c)">Open form</button>
+        </td>
+        <td *ngIf="c.grade_s<0 && c.form_opened">
+            <input type="text" placeholder="comment" [(ngModel)]="c.comment_s" style="max-width: 120px;">
+        </td>
+        <td *ngIf="c.grade_s<0 && c.form_opened">
+            <img *ngFor="let s of c.stars" src={{s.path}} (click)="update_stars(s.id, c)" class="arrow">
+        </td>
+        <td *ngIf="c.grade_s<0 && c.form_opened">
+            <button (click)="close_form(c)">Cancel</button>
+            <br>
+            <button (click)="submit_comment(c)">Submit</button>
+        </td>
+        <td>
+            {{c.msg}}
+        </td>
+
+    </tr>
+</table>
+</div>
+<br><br>
+
+<div class="card-content">
+<h2>Classes incoming
+    <img *ngIf="!show_incoming" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_incoming=true">
+    <img *ngIf="show_incoming" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_incoming=false"></h2><br>
+<table *ngIf="show_incoming">
+    <tr>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Teacher</th>
+        <th>Subject</th>
+        <th>Your comment</th>
+        <th>Joining link</th>
+    </tr>
+    <tr *ngFor="let c of classes_incoming">
+        <td>{{c.start_time}}</td>
+        <td>{{c.end_time}}</td>
+        <td><a (click)="go_to_profile(c.teacher)">{{c.teacher}}</a></td>
+        <td>{{c.subject}}</td>
+        <td>{{c.student_description}}</td>
+        <td (click)="join(c.link)" class="nav-link" *ngIf="c.show_link">Join</td>
+    </tr>
+</table>
+</div>

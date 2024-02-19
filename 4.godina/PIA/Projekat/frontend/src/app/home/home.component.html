@@ -1,0 +1,58 @@
+<div class="card-content">
+        <h2>Our statistics</h2><br>
+<table>
+    <tr>
+        <td>Number of students registered:</td>
+        <td>{{n_students}}</td>
+    </tr>
+    <tr>
+        <td>Number of teachers registered:</td>
+        <td>{{n_teachers}}</td>
+    </tr>
+    <tr>
+        <td>Number of classes held last week:</td>
+        <td>{{n_week}}</td>
+    </tr>
+    <tr>
+        <td>Number of classes held last month:</td>
+        <td>{{n_month}}</td>
+    </tr>
+</table>
+</div>
+<br>
+<div class="card-content">
+    <h2>Available for listening</h2><br>
+<table>
+    <tr>
+        <th>Subject name
+            <img class="arrow" src="../../assets/arrow_up.png" (click)="sort(0,0)">
+            <img class="arrow" src="../../assets/arrow_down.png" (click)="sort(1,0)">
+        </th>
+        <th>Teacher name
+            <img class="arrow" src="../../assets/arrow_up.png" (click)="sort(0,1)">
+            <img class="arrow" src="../../assets/arrow_down.png" (click)="sort(1,1)"></th>
+        <th>Teacher surname
+            <img class="arrow" src="../../assets/arrow_up.png" (click)="sort(0,2)">
+            <img class="arrow" src="../../assets/arrow_down.png" (click)="sort(1,2)"></th>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" [(ngModel)]="search_subject" placeholder="subject name">
+            <button (click)="search(0)">Search</button>
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="search_name" placeholder="teacher name">
+            <button (click)="search(1)">Search</button>
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="search_surname" placeholder="teacher surname">
+            <button (click)="search(2)">Search</button>
+        </td>
+    </tr>
+    <tr *ngFor="let s of subject_helpers">
+        <td>{{s.subject_name}}</td>
+        <td>{{s.teacher_name}}</td>
+        <td>{{s.teacher_surname}}</td>
+    </tr>
+</table>
+</div>

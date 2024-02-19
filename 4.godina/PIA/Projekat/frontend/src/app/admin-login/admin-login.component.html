@@ -1,0 +1,13 @@
+
+<div class="card-content">
+<table>
+<h1>Login</h1><br><br>
+
+<input type="text" placeholder="username" [(ngModel)]="user.username">
+<input type="password" placeholder="password" [(ngModel)]="user.password">
+<br>
+<button (click)="login()">Log in</button>
+<br><br>
+<p class="error">{{msg}}</p>
+</table>
+</div>

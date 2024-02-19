@@ -1,0 +1,28 @@
+
+<div class="card-content">
+    <h1>News</h1><br><br>
+<table >
+    <div *ngFor="let n of news" [class.seen]="n.seen" [class.not_seen]="!n.seen">
+        <hr>
+        <tr>
+            <td>Time: </td>
+            <td>{{n.student}} </td>
+        </tr>
+        <tr>
+            <td>From: </td>
+            <td>{{n.teacher}} </td>
+        </tr>
+        <tr>
+            <td colspan="3">{{n.description}} </td>
+        </tr>
+        <tr>
+           <td colspan="2"></td>
+            <td *ngIf="!n.seen">
+                <button (click)="mark_as_read(n.id)">Mark as read</button>
+            </td>
+            <td *ngIf="n.seen"></td>
+        </tr>
+    </div>
+
+</table>
+</div>

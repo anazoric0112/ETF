@@ -1,0 +1,102 @@
+
+<div class="container-fluid">
+    <div class="row centered card-content" style="margin-bottom: -50px; margin-top:-10px; ">
+        <h1><br>
+            <img src="../assets/books.png" class="logo">
+            My favourite teacher
+            <img src="../assets/books.png" class="logo">
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 menu-content">
+            <h1>Menu</h1>
+            <!-- <div class="logo col-sm-1" style="margin-right: 3%;">
+                <img src="../assets/logo.png" style="width: 60px; height: 60px;">
+            </div> -->
+
+            <ul style="background-color: rgba(255, 255, 255, 0) !important;
+                        font-size: 20px; padding-top: 15px">
+
+                <!-- Admin menu -->
+                <li *ngIf="service.userType=='admin'" class="nav-item ">
+                    <a class="nav-link" routerLink="admin_home">Home</a>
+                </li>
+                <li *ngIf="service.userType=='admin'" class="nav-item ">
+                    <a class="nav-link" routerLink="admin_statistics">Statistics</a>
+                </li>
+
+                <!-- Guest menu -->
+                <li *ngIf="service.userType=='guest'" class="nav-item ">
+                    <a class="nav-link" routerLink="">Home</a>
+                </li>
+                <li *ngIf="service.userType=='guest'" class="nav-item ">
+                    <a class="nav-link" routerLink="login">Login</a>
+                </li>
+                <li *ngIf="service.userType=='guest'" class="nav-item dropdown" >
+                    <a class="nav-link" (click)="dropreg()">
+                        Register
+                        <ul style="width: auto;" >
+
+                            <li class="dropdown-item" [hidden]="!droppedreg">
+                                <a class="dropdown-item"
+                                    routerLink="register_student">As student</a>
+                            </li>
+                            <li class="dropdown-item" [hidden]="!droppedreg">
+                                <a class="dropdown-item  "
+                                routerLink="register_teacher">As teacher</a>
+                            </li>
+                        </ul>
+                    </a>
+                </li>
+
+                <!-- Student -->
+                <li *ngIf="service.userType=='student'" class="nav-item ">
+                    <a class="nav-link" routerLink="student_home">Home</a>
+                </li>
+                <li *ngIf="service.userType=='student'" class="nav-item ">
+                    <a class="nav-link" routerLink="student_news">News</a>
+                </li>
+                <li *ngIf="service.userType=='student'" class="nav-item ">
+                    <a class="nav-link" routerLink="student_classes">Classes</a>
+                </li>
+
+                <!-- Teacher -->
+                <li *ngIf="service.userType=='teacher'" class="nav-item ">
+                    <a class="nav-link" routerLink="teacher_home">Home</a>
+                </li>
+                <li *ngIf="service.userType=='teacher'" class="nav-item ">
+                    <a class="nav-link" routerLink="teacher_mystudents">My students</a>
+                </li>
+        
+                <li *ngIf="service.userType=='student'" class="nav-item">
+                    <a class="nav-link"
+                        routerLink="student_profile">My profile</a>
+                </li>
+                <li *ngIf="service.userType=='teacher'" class="nav-item">
+                    <a class="nav-link"
+                        routerLink="teacher_profile">My profile</a>
+                </li>
+                <!-- <li *ngIf="service.userType!='guest'" class="nav-item">
+                    <a class="nav-link"
+                        routerLink="password_reset">Password reset</a>
+                </li>
+                <li *ngIf="service.userType!='guest'" class="nav-item">
+                    <a class="nav-link"
+                        routerLink="password_reset_home">Password reset with security question</a>
+                </li> -->
+                <li *ngIf="service.userType!='guest'" class="nav-item">
+                    <a class="nav-link"
+                        (click)="logout()">Log out</a>
+                </li>
+            </ul>
+        
+        </div>
+        <div class="col-sm-8 content">
+            <router-outlet class="content"></router-outlet>
+        </div>
+        
+    </div>
+    <!-- <div class="row footer card-content centered">
+      <i> Copyright 2024, Ana Zorić, odsek za softversko inzenjerstvo Elektrotehničkog fakulteta Univerziteta u Beogradu </i> 
+    </div> -->
+</div>

@@ -1,0 +1,231 @@
+/* Authors : Ana Zoric 0009/2020 */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --bg-gradient: radial-gradient(circle, rgba(33,148,156,1) 0%, rgba(55,26,77,1) 90%);
+    --base_hover: rgba(72, 38, 60, 0.8);
+    --base_active:rgba(72, 38, 60, 0.4);
+    --bg:rgb(23, 2, 32);
+    --bg-transparent:rgba(43, 17, 54, 0.815);
+    --base: rgba(36, 5, 49);
+    --base-transparent: rgba(36, 5, 49, 0.7);
+
+
+    --white:rgba(182, 182, 182, 0.812); 
+    --shadow:rgba(177, 177, 177, 0.419);
+    --active-white: rgba(255, 255, 255, 0.178)
+}
+
+input[type=text],
+input[type=password],
+input[type=datetime-local],
+input[type=file],
+select, option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    color: white;
+    background-color: var(--bg-transparent);
+    font-weight: bold;
+    min-height: 30px;
+    padding-top: 5px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: inherit;
+    resize: none;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=file]:focus,
+input[type=datetime-local]:focus,
+ select:focus, option:focus{
+    background-color: white;
+    color: var(--bg);
+}
+
+input[type='checkbox'] {
+    accent-color: var(--bg);   
+}
+
+input[type='checkbox']:before {
+    content:'';
+    display: block;
+    width:100%;
+    height:100%;
+    background: white
+}
+input[type='checkbox']:checked:before {
+    width:25px;
+    height:25px;
+    accent-color: var(--bg);   
+    background: none !important
+}
+
+::placeholder {
+    color: var(--white);
+}
+
+button {
+    border-radius: 10px !important;
+    color: var(--white);
+    background-color: var(--bg-transparent);
+    font-weight: bold;
+    min-height: 20px;
+    margin-top: 5px;
+    min-height: 30px;
+    min-width: 70px;
+    padding: 5px
+}
+
+button:active {
+    background-color: var(--base-transparent);
+    color: white
+}
+
+button:hover {
+    color: white
+}
+
+.error {
+    color: rgb(255, 176, 72);
+}
+
+
+.arrow {
+    width: 20px;
+    height: 20px;
+}
+
+.arrow-drop {
+    width: 50px;
+    height: 50px;
+    align-items: right !important;
+    justify-items: right !important;
+    text-align: right !important;
+}
+.arrow-drop:hover, .arrow-drop:active {
+    width: 60px;
+    height: 60px;
+} 
+
+.arrow:hover, .arrow:active{
+    width: 25px;
+    height: 25px;
+}
+
+.arrow:active, .arrow-drop:active{
+    background-color: var(--active-white);
+    border-radius: 5px;
+}
+
+
+
+.seen {
+    color: rgb(88, 88, 88);
+}
+
+.nav-link {
+    border-radius: 10px;
+    text-decoration: none;
+}
+.nav-link:active, .nav-link:hover{
+    font-weight: 1000;
+    font-size: 25px
+}
+.nav-link:active{
+    color: var(--white);
+    background-color: var(--active-white);
+    margin: 5px;
+}
+
+.user_pic {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 13px 10px 10px 10px;
+    vertical-align: center;
+}
+
+.content {
+    margin-top: 1%;
+    padding: 2%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-content{
+    background-color: var(--base-transparent);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.menu-content{
+    background-color: var(--base-transparent);
+    border-radius: 5px;
+    margin: 20px;
+    margin-top: 5%;
+    padding: 2%;
+    height: fit-content;
+}
+.centered {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    text-align:center; 
+    margin-left:auto; 
+    margin-right:auto; 
+}
+
+td {
+    padding: 10px
+}
+
+th {
+    padding: 15px;
+    border-bottom: 1px solid var(--white);
+}
+
+body{
+    color: white;
+    /* background-color: var(--bg); */
+    background: var(--bg-gradient);
+    font-family: Consolas;
+    font-weight: 100;
+}
+
+footer {
+    min-height: 30px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    margin-right: 3%;
+    margin-left: 3%;
+    width: 94%;
+    background-color: var(--base-transparent);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    position: absolute; 
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+}

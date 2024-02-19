@@ -1,0 +1,62 @@
+
+<div class="card-content">
+<h1>Register as teacher</h1><br><br>
+<table >
+<div *ngIf="step==1">
+    <input type="text" placeholder="username" [(ngModel)]="user.username">
+    <input type="password" placeholder="password" [(ngModel)]="user.password">
+    <input type="text" placeholder="security question" [(ngModel)]="user.sec_question">
+    <input type="text" placeholder="security answer" [(ngModel)]="user.sec_answer">
+    <input type="text" placeholder="name" [(ngModel)]="user.name">
+    <input type="text" placeholder="surname" [(ngModel)]="user.surname">
+
+    Gender:
+    <input type="radio" name="gender" value="male" [(ngModel)]="user.gender"> Male 
+    <input type="radio" name="gender" value="female" [(ngModel)]="user.gender"> Female
+
+    <input type="text" placeholder="address" [(ngModel)]="user.address">
+    <input type="text" placeholder="phone" [(ngModel)]="user.phone">
+    <input type="text" placeholder="email" [(ngModel)]="user.email">
+    Profile photo: 
+    <input type="file" class="file-upload" 
+    requiredFileType="image/png" 
+    (change)="onFileSelected($event)">
+    <br>
+    <button (click)="go_next()">Next</button>
+    <br>
+
+</div>
+
+<div *ngIf="step==2">
+    <h3>Upload your resume</h3>
+    Resume:
+    <input type="file" class="file-upload" 
+    requiredFileType="pdf" 
+    (change)="onCvSelected($event)">
+    <br>
+    <h3>Which sybjects would you like to teach?</h3>
+    <div *ngFor="let s of subjects">
+    <input type="checkbox" name="subjects" value={{s}}>{{s}}
+    </div>
+    <br>
+    <input type="text" placeholder="Something else? Type here" [(ngModel)]="user.additional_subject">
+    <br><br>
+    
+    <h3>To which age groups would you like to teach?</h3>
+    <input type="checkbox" name="ages" value="1-4">Primary school 1-4. grade
+    <br>
+    <input type="checkbox" name="ages" value="5-8">Primary school 5-8. grade
+    <br>
+    <input type="checkbox" name="ages" value="9-12">High school
+    <br>
+    
+    <input type="text" placeholder="Where did you hear about this website?" [(ngModel)]="user.heard_from">
+    <br>
+    <!-- Go back? -->
+    <button (click)="back()">Back</button>
+    <button (click)="register()">Register</button>
+    <br>
+</div>
+<div> {{msg}}</div>
+</table>
+</div>

@@ -1,0 +1,64 @@
+<div class="card-content">
+<h1>Register as student</h1><br><br>
+<table >
+<input type="text" placeholder="username" [(ngModel)]="user.username">
+
+<input type="password" placeholder="password" [(ngModel)]="user.password">
+
+<input type="text" placeholder="security question" [(ngModel)]="user.sec_question">
+
+<input type="text" placeholder="security answer" [(ngModel)]="user.sec_answer">
+
+<input type="text" placeholder="name" [(ngModel)]="user.name">
+
+<input type="text" placeholder="surname" [(ngModel)]="user.surname">
+
+
+Gender:
+<input type="radio" name="gender" value="male" [(ngModel)]="user.gender"> Male 
+<input type="radio" name="gender" value="female" [(ngModel)]="user.gender"> Female
+<br>
+
+<input type="text" placeholder="address" [(ngModel)]="user.address">
+
+<input type="text" placeholder="phone" [(ngModel)]="user.phone">
+
+<input type="text" placeholder="email" [(ngModel)]="user.email">
+
+<select aria-placeholder="school type" [(ngModel)]="user.school_type">
+    <option value="" disabled selected hidden>School type</option>
+    <option>Primary school</option>
+    <option>Grammar school</option>
+    <option>High school - technical</option>
+    <option>High school - art</option>
+</select>
+<select [(ngModel)]="user.year" *ngIf="user.school_type=='Primary school'; ">
+    <option value="" disabled selected hidden>Year</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+</select>
+<select [(ngModel)]="user.year" *ngIf="user.school_type!='Primary school'; ">
+    <option value="" disabled selected hidden>Year</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+</select>
+Profile photo: 
+<input type="file" class="file-upload" 
+requiredFileType="image/png" 
+(change)="onFileSelected($event)">
+
+<br>
+
+<button (click)="register()">Register</button>
+<br>
+<div> {{msg}}</div>
+</table>
+</div>

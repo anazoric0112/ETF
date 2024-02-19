@@ -1,0 +1,1 @@
+Lozinka koriscena za sve korisnike je 'Lozinka1.'

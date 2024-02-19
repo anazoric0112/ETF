@@ -1,0 +1,123 @@
+
+<div class="row card-content">
+    <div class="col-sm-8 offset-2">
+        <h1>Teacher requests
+            <img *ngIf="!show_requests" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_requests=true">
+            <img *ngIf="show_requests" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_requests=false"></h1><br><br>
+        <h5 *ngIf="teacher_requests.length == 0 && show_requests">No teacher requests!</h5>
+        <div *ngIf="show_requests">
+            <table *ngIf="teacher_requests.length > 0">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Profile</th>
+                    <th>Accept</th>
+                    <th>Decline</th>
+                    <th>CV</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let t of teacher_requests">
+                    <td>{{t.name}}</td>
+                    <td>{{t.surname}}</td>
+                    <td><button (click)="go_to_profile(t)">Profile</button></td>
+                    <td><button (click)="process_request(t.username, 1)">Accept</button></td>
+                    <td><button (click)="process_request(t.username, -1)">Decline</button></td>
+                    <td><button (click)="download_cv(t.username)">Download CV</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row card-content ">
+    <h1>Active members
+        <img *ngIf="!show_members" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_members=true">
+        <img *ngIf="show_members" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_members=false"></h1><br><br><br>
+    <div class="col-sm-6" *ngIf="show_members">
+        <h1>Teachers</h1><br>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Profile</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>CV</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let t of teachers">
+                <td>{{t.name}}</td>
+                <td>{{t.surname}}</td>
+                <td><button (click)="go_to_profile(t)">Profile</button></td>
+                <td>{{t.accepted == 1 ? "active" : "inactive"}}</td>
+                <td *ngIf="t.accepted == 1"><button (click)="deactivate_teacher(t.username)">Deactivate</button></td>
+                <td *ngIf="t.accepted == -2"><button (click)="activate_teacher(t.username)">Activate</button></td>
+                <td><button (click)="download_cv(t.username)">Download</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-6" *ngIf="show_members">
+        <h1>Students</h1><br>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let s of students">
+                <td>{{s.name}}</td>
+                <td>{{s.surname}}</td>
+            </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+<br>
+<div class="row card-content">
+    <h1>Subjects
+        <img *ngIf="!show_subjects" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_subjects=true">
+        <img *ngIf="show_subjects" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_subjects=false"></h1><br><br>
+    <div class="col-sm-6" *ngIf="show_subjects">
+        <h1>Subject requests</h1><br><br>
+        <h5 *ngIf="subject_requests.length == 0">No subject requests!</h5>
+        <table *ngIf="subject_requests.length > 0">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Suggested by</th>
+                <th>Accept</th>
+                <th>Decline</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let s of subject_requests">
+                <td>{{s.name}}</td>
+                <td>{{s.teachers[0]}}</td>
+                <td><button (click)="accept_subject(s.name)">Accept</button></td>
+                <td><button (click)="decline_subject(s.name)">Decline</button></td>
+            </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="col-sm-6" *ngIf="show_subjects">
+        <h1>Add Subject</h1><br><br>
+        <table>
+            <input type="text" placeholder="subject name" [(ngModel)]="subject_name">
+            <button (click)="add_subject()">Add</button>
+            <br><br>
+            {{subject_error_msg}}
+        </table>
+    </div>
+</div>
+
+

@@ -1,0 +1,154 @@
+<div class="row">
+<div class="card-content col-sm-12">
+<h1>Classes incoming 
+    <img *ngIf="!show_incoming" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_incoming=true">
+    <img *ngIf="show_incoming" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_incoming=false">
+</h1>
+
+
+<br><br>
+<table *ngIf="show_incoming">
+    <tr>
+        <th rowspan="4">
+            Show options
+            <br><br>
+            <input type="radio" name="showopt" value="5" [(ngModel)]="show" (click)="update_show(5)" checked="true">5<br>
+            <input type="radio" name="showopt" value="10" [(ngModel)]="show" (click)="update_show(10)">10<br>
+            <input type="radio" name="showopt" value="-1" [(ngModel)]="show" (click)="update_show(-1)">All<br><br>
+            <br>
+        </th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Subject</th>
+        <th>Student</th>
+        <th>Link to join</th>
+        <th>Cancel?</th>
+    </tr>
+    <tr *ngFor="let c of classes_incoming_to_show">
+        <td>{{c.start}}</td>
+        <td>{{c.end}}</td>
+        <td>{{c.subject}}</td>
+        <td (click)="go_to_profile(c.student.username)">{{c.student.name}} {{c.student.surname}}</td>
+        
+        <td *ngIf="!c.show_link"></td>
+        <td (click)="join(c.link)" *ngIf="c.show_link">Join</td>
+
+        <td *ngIf="!c.can_cancel">
+            Not available
+        </td>
+        <td *ngIf="c.can_cancel">
+            <input type="text" [(ngModel)]="c.comment" placeholder="Why?" style="width: 150px;">
+        </td>
+        <td *ngIf="c.can_cancel">
+            <button (click)="cancel(c)">Cancel</button>
+        </td>
+
+    </tr>
+</table>
+</div>
+
+
+<div class="card-content col-sm-12">
+<h1>Class requests
+    <img *ngIf="!show_requests" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_requests=true">
+    <img *ngIf="show_requests" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_requests=false"></h1><br><br>
+
+<table *ngIf="show_requests">
+    <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Subject</th>
+        <th>Student</th>
+        <th>Description</th>
+    </tr>
+    <tr *ngFor="let c of requests">
+        <td>{{c.start}}</td>
+        <td>{{c.end}}</td>
+        <td>{{c.subject}}</td>
+        <td (click)="go_to_profile(c.student.username)">{{c.student.name}} {{c.student.surname}}</td>
+        <td>{{c.student_description}}</td>
+        <td>
+            <button (click)="accept(c)">Accept</button>
+        </td>
+        <td>
+            <button (click)="decline(c)">Decline</button>
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="c.comment" placeholder="Why?" style="width: 150px;">
+        </td>
+        <td>
+            {{c.msg}}
+        </td>
+
+    </tr>
+</table>
+</div>
+
+</div>
+
+
+<div class="row card-content">
+    <h1>My calendar
+        <img *ngIf="!show_calendar" src="../../assets/arrow_drop_down.png" class="arrow-drop" (click)="show_calendar=true">
+        <img *ngIf="show_calendar" src="../../assets/arrow_drop_up.png" class="arrow-drop" (click)="show_calendar=false">
+    </h1>
+    <div class="col-md-6" *ngIf="show_calendar">
+            <button
+                mwlCalendarPreviousView
+                [view]="'week'"
+                [(viewDate)]="viewDate"
+            >
+                Previous
+            </button>
+            <button
+                mwlCalendarToday
+                [(viewDate)]="viewDate"
+            >
+                Today
+            </button>
+            <button
+                mwlCalendarNextView
+                [view]="'week'"
+                [(viewDate)]="viewDate"
+            >
+                Next
+            </button>
+    </div>
+    <div class="col-md-6" *ngIf="show_calendar">
+        <h3>{{ viewDate | calendarDate:('weekViewTitle') }}</h3>
+    </div>
+</div>
+<br />
+<div *ngIf="show_calendar">
+<mwl-calendar-week-view style="color: var(--base);"
+    [viewDate]="viewDate"
+    [events]="events"
+    [dayStartHour]="10"
+    [dayEndHour]="18"
+    [excludeDays]="[0, 6]"
+    [hourSegmentTemplate]="weekViewHourSegmentTemplate"
+></mwl-calendar-week-view>
+
+<ng-template
+    #weekViewHourSegmentTemplate
+    let-segment="segment"
+    let-locale="locale"
+    let-segmentHeight="segmentHeight"
+    let-isTimeLabel="isTimeLabel"
+>
+    <div
+        #segmentElement
+        class="cal-hour-segment"
+        [style.height.px]="segmentHeight"
+        [class.cal-hour-start]="segment.isStart"
+        [class.cal-after-hour-start]="!segment.isStart"
+        [ngClass]="segment.cssClass"
+        (mousedown)="start_drag_to_create(segment, $event, segmentElement)"
+        style="background-color: rgba(17, 45, 58, 0.445);"
+    >
+        <div class="cal-time" *ngIf="isTimeLabel">
+            {{ segment.date | calendarDate:'weekViewHour':locale }}
+        </div>
+    </div>
+</ng-template>
+</div>

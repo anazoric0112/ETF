@@ -1,0 +1,136 @@
+
+<div class="row">
+    
+<div class="card-content col-sm-8">
+    <h1>My profile</h1>
+<table *ngIf="!change;">
+    <tr>
+        <td>Name:</td>
+        <td>{{student.name}}</td>
+        <td rowspan="2"><img class="user_pic" src={{path}}></td>
+    </tr>
+    <tr>
+        <td>Surname:</td>
+        <td>{{student.surname}}</td>
+    </tr>
+    <tr>
+        <td>Address:</td>
+        <td> {{student.address}} </td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>{{student.phone}} </td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>{{student.email}} </td>
+    </tr>
+    <tr>
+        <td>Education level:</td>
+        <td>{{student.school_type}} </td>
+    </tr>
+    <tr>
+        <td>Year:</td>
+        <td>{{student.year}}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><button (click)="change=true">Change data</button></td>
+    </tr>
+</table>
+
+
+<table *ngIf="change;">
+    <tr>
+        <td>Profile picture</td>
+        <input type="file" class="file-upload" 
+        requiredFileType="image/png" 
+        (change)="onFileSelected($event)">
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <input type="text" [(ngModel)]="student.name">
+    </tr>
+    <tr>
+        <td>Surname:</td>
+        <input type="text" [(ngModel)]="student.surname">
+    </tr>
+    <tr>
+        <td>Address:</td>
+        <input type="text" [(ngModel)]="student.address">
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <input type="text" [(ngModel)]="student.phone">
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <input type="text" [(ngModel)]="student.email">
+    </tr>
+    <tr>
+        <td>Education level:</td>
+        <td>
+            <select aria-placeholder="school type" [(ngModel)]="student.school_type">
+                <option>Primary school</option>
+                <option>Grammar school</option>
+                <option>High school - technical</option>
+                <option>High school - art</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Year:</td>
+        <td>
+            <div *ngIf="student.school_type=='Primary school'; ">
+                <select [(ngModel)]="student.year">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </div>
+            <div *ngIf="student.school_type!='Primary school'; ">
+                <select [(ngModel)]="student.year">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button (click)="change=false">Go back</button>
+        </td>
+        <td>
+            <button (click)="changeData()">Apply changes</button>
+        </td>
+    </tr>
+</table>
+
+<div>{{msg}}</div>
+</div>
+
+<div class="col-sm-3">
+    <div *ngIf="!show_pw1 && !show_pw2" class="card-content ">
+        <h1>Change passowrd</h1><br><br>
+        <button (click)="show_pw1=true">Remember old password?</button>
+        <br><br>
+        <button (click)="show_pw2=true">Can't remember?</button>
+        <br><br>
+    </div>
+
+    <app-password-reset *ngIf="show_pw1" [user]="student"></app-password-reset>
+    <app-password-reset-home *ngIf="show_pw2" [user]="student"></app-password-reset-home>
+    <br><br>
+    <div  *ngIf="show_pw1 || show_pw2" class="card-content">
+        <button (click)="show_pw1=false; show_pw2=false">Go back</button>
+    </div>
+</div>
+
+</div>

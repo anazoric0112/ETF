@@ -1,0 +1,224 @@
+[{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e0"
+  },
+  "id": 1,
+  "time": {
+    "$date": "2023-01-01T07:00:00.000Z"
+  },
+  "description": "Posle",
+  "seen": false,
+  "student": "ana1",
+  "teacher": "n1",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e1"
+  },
+  "id": 2,
+  "time": {
+    "$date": "2023-01-02T07:00:00.000Z"
+  },
+  "description": "Oooof",
+  "seen": false,
+  "student": "ana2",
+  "teacher": "n1",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e2"
+  },
+  "id": 3,
+  "time": {
+    "$date": "2023-01-01T09:00:00.000Z"
+  },
+  "description": "Moze cas",
+  "seen": true,
+  "student": "ana3",
+  "teacher": "n1",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e3"
+  },
+  "id": 4,
+  "time": {
+    "$date": "2022-12-31T23:00:00.000Z"
+  },
+  "description": "Ajde",
+  "seen": false,
+  "student": "ana4",
+  "teacher": "n1",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e4"
+  },
+  "id": 5,
+  "time": {
+    "$date": "2023-01-01T08:02:00.000Z"
+  },
+  "description": "Mhm",
+  "seen": false,
+  "student": "ana1",
+  "teacher": "n2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e5"
+  },
+  "id": 6,
+  "time": {
+    "$date": "2023-02-01T07:19:00.000Z"
+  },
+  "description": "EH",
+  "seen": false,
+  "student": "ana2",
+  "teacher": "n2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e6"
+  },
+  "id": 7,
+  "time": {
+    "$date": "2023-03-01T11:50:00.000Z"
+  },
+  "description": "Moze cas",
+  "seen": true,
+  "student": "ana3",
+  "teacher": "n2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e7"
+  },
+  "id": 8,
+  "time": {
+    "$date": "2023-03-01T07:30:00.000Z"
+  },
+  "description": "LOLOLLOL",
+  "seen": false,
+  "student": "ana4",
+  "teacher": "n2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e8"
+  },
+  "id": 9,
+  "time": {
+    "$date": "2023-01-01T07:20:00.000Z"
+  },
+  "description": "Dodji ranije",
+  "seen": false,
+  "student": "ana1",
+  "teacher": "n3",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3e9"
+  },
+  "id": 10,
+  "time": {
+    "$date": "2023-02-01T07:00:05.000Z"
+  },
+  "description": "Sutra",
+  "seen": true,
+  "student": "ana2",
+  "teacher": "n3",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3ea"
+  },
+  "id": 11,
+  "time": {
+    "$date": "2023-01-01T07:56:01.000Z"
+  },
+  "description": "Moze cas",
+  "seen": false,
+  "student": "ana3",
+  "teacher": "n3",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3eb"
+  },
+  "id": 12,
+  "time": {
+    "$date": "2023-10-01T06:00:04.000Z"
+  },
+  "description": "EQEQEQEQEQEQ",
+  "seen": true,
+  "student": "ana4",
+  "teacher": "n3",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3ec"
+  },
+  "id": 13,
+  "time": {
+    "$date": "2023-01-10T07:34:00.000Z"
+  },
+  "description": "MWAHAHAHAHA",
+  "seen": true,
+  "student": "ana1",
+  "teacher": "n4",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3ef"
+  },
+  "id": 16,
+  "time": {
+    "$date": "2023-04-01T09:00:00.000Z"
+  },
+  "description": "AAAAAAAA",
+  "seen": false,
+  "student": "ana4",
+  "teacher": "n4",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3ed"
+  },
+  "id": 14,
+  "time": {
+    "$date": "2023-01-05T10:00:00.000Z"
+  },
+  "description": "XD",
+  "seen": true,
+  "student": "ana2",
+  "teacher": "n4",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65cbf34831bfbb2d4e6ca3ee"
+  },
+  "id": 15,
+  "time": {
+    "$date": "2023-01-06T05:30:00.000Z"
+  },
+  "description": "Moze cas",
+  "seen": false,
+  "student": "ana3",
+  "teacher": "n4",
+  "__v": 0
+}]

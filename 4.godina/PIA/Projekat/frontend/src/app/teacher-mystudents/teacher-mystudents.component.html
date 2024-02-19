@@ -1,0 +1,41 @@
+<div class="card-content">
+    <h1>My students</h1><br><br>
+    <table>
+        <tr>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Student</th>
+            <th>Subject</th>
+            <th>Your comment</th>
+        </tr>
+        <tr *ngFor="let c of classes_held">
+            <td>{{c.start_time}}</td>
+            <td>{{c.end_time}}</td>
+            <td><a (click)="go_to_profile(c.student)">{{c.student}}</a></td>
+            <td>{{c.subject}}</td>
+            <!-- <td>{{c.link}}</td> -->
+            <td *ngIf="c.grade_t>=0">
+                {{c.grade_t}} - {{c.comment_t}}
+            </td>
+
+
+            <td *ngIf="c.can_comment && !c.form_opened">
+                <button (click)="open_form(c)">Open form</button>
+            </td>
+            <td *ngIf="c.can_comment && c.form_opened">
+                <input type="text" placeholder="comment" [(ngModel)]="c.comment_t" style="max-width: 150px;">
+            </td>
+            <td *ngIf="c.can_comment && c.form_opened">
+                <img *ngFor="let s of c.stars" src={{s.path}} (click)="update_stars(s.id, c)" class="arrow">
+            </td>
+            <td *ngIf="c.can_comment && c.form_opened">
+                <button (click)="close_form(c)">Cancel</button>
+                <br>
+                <button (click)="submit_comment(c)">Submit</button>
+            </td>
+            <td>
+                {{c.msg}}
+            </td>
+        </tr>
+    </table>
+</div>
