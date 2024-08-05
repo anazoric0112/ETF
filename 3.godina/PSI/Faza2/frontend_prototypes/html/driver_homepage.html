@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/shared_styles.css" type="text/css">
+    <title>CityHopper</title>
+</head>
+
+<body>
+    <div class="page">
+        <div class="navigation">
+            <div class="logo">
+                <img src="../imgs/logo.png">
+            </div>
+
+            <div class="title">
+                <h1>CityHopper</h1>
+            </div>
+
+            <div class="user">
+                <img src="../imgs/user.png">
+            </div>
+        </div>
+
+        <div class="mainpage">
+            <div class="merged_info">
+                <div class="info heading">
+                    <h2>Create ride</h2>
+                </div>
+                <div class="info card">
+                    <form>
+                        <input type="text" placeholder="From" class="input_field" required>
+                        <input type="text" placeholder="To" class="input_field" required>
+                        <input type="number" min="0" placeholder="Number of free seats" class="input_field" required>
+                        <input type="number" step="any" min="0" placeholder="Price per person in $" class="input_field" required>
+                        <h4>Start date and time:</h4>
+                        <input type="datetime-local" class="input_field" required>
+                        <h4>Estimated arriving date <br> and time:</h4>
+                        <input type="datetime-local" class="input_field" required>
+                        <div style="text-align:center">
+                            <button type="submit"> Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 Pistaci - All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

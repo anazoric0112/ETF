@@ -1,0 +1,95 @@
+<!-- Authors : Ana Zoric 0009/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="finished_rides heading offset-2 col-sm-3">
+                <h2>Finished rides</h2>
+            </div>
+            <div class="comments heading col-sm-4 offset-1">
+                <h2>Comments</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="finished_rides offset-2 col-sm-3">
+                {% for ride in f_rides %}
+                <div class="route">
+                <table>
+                    <tr>
+                        <td>From:</td>
+                        <td><b>{{ ride.idto1.name }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>To:</td>
+                        <td><b>{{ ride.idto2.name }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td>{{ ride.datetime }}</td>
+                    </tr>
+                </table>
+            </div>
+            <hr>
+            {% endfor %}
+            </div>
+            <div class="comments col-sm-4 offset-1" onload="fill_comments({{ n }})">
+        {% if comments %}
+            {% for c in comments  %}
+                <div class="comment" hidden=true id="{{ c.id }}">
+                    <br>
+                    <table>
+                    <tr>
+                        <td rowspan="2">
+                            {% if c.comment.idt.idt.image %}
+                                <img src="{{c.comment.idt.idt.image.url}}" class="user user_pic"
+                                     onclick="location.href='/cityhopper/profile/{{ c.comment.idt.idt.id }}'">
+                            {% else %}
+                                <img src="/static/cityhopper/imgs/user.png" class="user"
+                                     onclick="location.href='/cityhopper/profile/{{ c.comment.idt.idt.id }}'">
+                            {% endif %}
+
+                        </td>
+                        <td><h4>{{ c.comment.idt.idt.username }}</h4></td>
+                    </tr>
+                    <tr class="comment_header" >
+                        <td>
+                            Drive from {{ c.ride.idto1.name }} to {{ c.ride.idto2.name }}
+                            <br>
+                            On {{ c.ride.datetime }}
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            {% for i in c.grade %}
+                                <img src="/static/cityhopper/imgs/star_full.png" class="star">
+                            {% endfor %}
+                            {% for i in c.rest_grade %}
+                                <img src="/static/cityhopper/imgs/star_empty.png" class="star">
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            {{ c.comment.comment }}
+                        </td>
+                    </tr>
+                    </table>
+                    <br>
+                    <hr>
+                </div>
+            {% endfor %}
+            <button class="the_button" onclick="prev_comments({{ n }})" id="fin_prev" hidden="true">
+                Previous
+            </button>
+            <button class="the_button" onclick="fill_comments({{ n }})" id="fin_comments">
+                Show comments
+            </button>
+        {% endif %}
+
+        </div>
+        </div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+<!-- Authors : Ilija Obradovic 0049/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+{% block title %}
+    <link rel="stylesheet" href="../../static/cityhopper/css/moderator_homepage_style.css" type="text/css">
+    <title>CityHopper</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <script src="/static/cityhopper/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/cityhopper/js/mod_page.js"></script>
+    <div class="moderator_dashboard">
+
+        <div class="place_dash">
+            <div class="card_content heading">
+                <h2>Edit City</h2>
+            </div>
+            {% if msg and msg.id == -1 %}
+                <div id="msg_data"  class="card_content">
+
+                        <h4 style="color: red"> {{msg.msg}} </h4>
+
+
+                </div>
+            {% endif %}
+            <div class="card_content">
+                <table class="place_table">
+                    <tr>
+                        <th colspan=4>
+
+                            <input id="sr_loc" type="text" placeholder="Search Locations" class="sr_field input_field" >
+
+                        </th>
+                    </tr>
+                    {% for town in towns %}
+                        <tr class="town_row fit_cont">
+                            <td>
+                                <h5> {{ town }}</h5>
+                            </td>
+                            <td>
+                                <button  class="edit_button the_button" id="edit_btn_{{ town.idto }}"
+                                        onclick="location.href='{% url 'edit_town' town.idto %}'"> Edit </button>
+                            </td>
+                            <td>
+                                <form method="POST" action="delete_town">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="town_id" value="{{ town.idto }}">
+                                    <button class="del_button the_button" name="del_button" value="submit">Delete</button>
+
+                                </form>
+                            </td>
+                            {% if msg and msg.id == town.idto %}
+                            <td id="msg_data">
+
+                                        <div>
+                                            {{ msg.msg }}
+                                        </div>
+
+                            </td>
+                            {% endif %}
+                        </tr>
+
+
+                    {% endfor %}
+                </table>
+
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,130 @@
+<!-- Authors : Ana Zoric 0009/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        {% if user_dd %}
+        <div class="info heading col-sm-6 offset-1">
+            <h2>User info</h2>
+        </div>
+        <div class="info heading col-sm-4 offset-1">
+            <h2>Comments</h2>
+        </div>
+        {% else  %}
+        <div class="info heading col-sm-6 offset-3">
+            <h2>User info</h2>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if user_dd %}
+        <div class="info col-sm-6 offset-1">
+        {% else %}
+        <div class="info col-sm-6 offset-3">
+        {% endif %}
+            <table class="info_table">
+                <tr>
+                    <td rowspan="6" style="vertical-align: top !important;">
+                        {% if user_.image %}
+                            <img src="{{user_.image.url}}" class="user user_pic"
+                                 onclick="location.href='/cityhopper/profile/{{ user_.id }}'">
+                        {% else %}
+                            <img src="/static/cityhopper/imgs/user.png" class="user"
+                                 onclick="location.href='/cityhopper/profile/{{ user_.id }}'">
+                        {% endif %}
+                    </td>
+                    <td>First name:</td>
+                    <td>{{ user_.first_name }}</td>
+                </tr>
+                <tr>
+                    <td>Last name:</td>
+                    <td>{{ user_.last_name }}</td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{ user_.username }}</td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td>{{ user_.email }}</td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>{{ user_.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        {% if user_.gender == 0 %}
+                            Male
+                        {% else %}
+                            Female
+                        {% endif %}
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        {% if user_dd %}
+        <div class="comments col-sm-4 offset-1">
+            {% for c in comments  %}
+                <div class="comment" hidden=true id="{{ c.id }}">
+                    <br>
+                    <table>
+                    <tr>
+                        <td rowspan="2">
+                            {% if c.comment.idt.idt.image %}
+                                <img src="{{c.comment.idt.idt.image.url}}" class="user user_pic"
+                                     onclick="location.href='/cityhopper/profile/{{ c.comment.idt.idt.id }}'">
+                            {% else %}
+                                <img src="/static/cityhopper/imgs/user.png" class="user"
+                                         onclick="location.href='/cityhopper/profile/{{ c.comment.idt.idt.id }}'">
+                            {% endif %}
+                        </td>
+                        <td><h4>{{ c.comment.idt.idt.username }}</h4></td>
+                    </tr>
+                    <tr class="comment_header" >
+                        <td>
+                            Drive from {{ c.ride.idto1.name }} to {{ c.ride.idto2.name }}
+                            <br>
+                            On {{ c.ride.datetime }}
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            {% for i in c.grade %}
+                                <img src="/static/cityhopper/imgs/star_full.png" class="star">
+                            {% endfor %}
+                            {% for i in c.rest_grade %}
+                                <img src="/static/cityhopper/imgs/star_empty.png" class="star">
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            {{ c.comment.comment }}
+                        </td>
+                    </tr>
+                    </table>
+                    <br>
+                    <hr>
+                </div>
+            {% endfor %}
+            {% if comments %}
+            <button class="the_button" onclick="prev_comments_profile({{ n }})" id="prof_prev" hidden="true">
+                Previous
+            </button>
+            <button class="the_button" onclick="fill_comments_profile({{ n }})" id="prof_comments">
+                Show comments
+            </button>
+            {% endif %}
+        </div>
+        {% endif %}
+
+
+
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!-- Authors : Ana Zoric 0009/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+
+
+    <div class="card_content" style="width: 60%">
+        <h1 class="title"> Welcome to CityHopper!</h1>
+    </div>
+        {% if not user.is_authenticated %}
+
+    <div class="card_content" style="width: 60%; margin-top: 5%;">
+        <h1 class="title"> Are you new?</h1>
+    </div>
+    <div class="card_content" style="width: 60%; font-size: 30px">
+        <table>
+            <tr>
+                <td><a href="{% url 'login' %}" class="decorated_link user"> Login </a></td>
+            </tr>
+            <tr>
+                <td><a href="{% url 'signup' %}" class="decorated_link user"> Signup </a></td>
+
+            </tr>
+
+        </table>
+    </div>
+    {% endif %}
+
+
+
+{% endblock %}

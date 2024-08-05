@@ -1,0 +1,26 @@
+.request_dashboard{
+    display: flex;
+    flex-direction: column;
+    width: 300px; 
+    height: 100%;
+    margin-top: 4%;
+}
+
+.requests{
+    border-radius: 15px;
+    margin-top: 10%;
+    float: none;
+}
+
+.request_table{
+    border-spacing: 20px;
+}
+
+.requests a{
+    text-decoration: none;
+    color:white;
+}
+
+.requests a:hover{
+    color: var(--darkest_blue);
+}

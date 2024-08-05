@@ -1,0 +1,102 @@
+<!-- Authors : Ana Zoric 0009/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="active_rides heading offset-4 col-sm-4">
+                <h2>Active rides</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="active_rides offset-4 col-sm-4" >
+                {% for ride in a_rides %}
+                <table>
+                    <tr>
+                        <td>From:</td>
+                        <td><b>{{ ride.ride.idto1.name }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>To:</td>
+                        <td><b>{{ ride.ride.idto2.name }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td>{{ ride.ride.datetime }}</td>
+                    </tr>
+                    <tr>
+                        <td>Available seats:</td>
+                        <td>{{ ride.ride.available }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="the_button" onclick="show_buttons({{ ride.id1 }})">Cancel</button>
+                        </td>
+                        <td>
+                            <button class="the_button" onclick="show_buttons({{ ride.id2 }})">Finish</button>
+                        </td>
+                         <td>
+                            <button class="the_button" onclick="toggle_buttons({{ ride.id3 }})">Reserved</button>
+                        </td>
+                    </tr>
+                    <tr   id={{  ride.id1 }} hidden=true >
+                        <td colspan="2">Are you sure you want to cancel?</td>
+                        <td>
+                            <button class="the_button"
+                                    onclick="location.href='{% url 'cancel_drive' ride.ride.iddr %}'"> YES</button>
+                            <button class="the_button del_button"
+                                onclick="hide_buttons({{ ride.id1 }})"> NO</button>
+                        </td>
+
+                    </tr>
+                    <tr   id={{  ride.id2 }} hidden=true >
+                        <td colspan="2">Are you sure you want to finish?</td>
+                        <td>
+                            <button class="the_button"
+                                    onclick="location.href='{% url 'finish_drive' ride.ride.iddr %}'"> YES</button>
+                            <button class="the_button del_button"
+                                onclick="hide_buttons({{ ride.id2 }})"> NO</button>
+                        </td>
+
+                    </tr>
+
+                    </table>
+                    <table id={{ ride.id3 }} hidden=true>
+                    {% for r in ride.rezerved  %}
+                    <div class="comment">
+                        <tr>
+                            <td rowspan="2">
+                                {% if r.idt.idt.image %}
+                                    <img src="{{r.idt.idt.image.url}}" class="user user_pic"
+                                     onclick="location.href='/cityhopper/profile/{{ r.idt.idt.id }}'">
+                                {% else %}
+                                    <img src="/static/cityhopper/imgs/user.png" class="user"
+                                     onclick="location.href='/cityhopper/profile/{{ r.idt.idt.id }}'">
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr class="comment_header" >
+                            <td>
+                                Drive from {{ r.iddr.idto1.name }} to {{ r.iddr.idto2.name }}
+                                <br>
+                                On {{ r.iddr.datetime }}
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h5>{{ r.idt.idt.username }}</h5></td>
+                            <td>Reserved number of seats: {{ r.seats }}</td>
+                        </tr>
+                        <br>
+                    </div>
+                    {% endfor %}
+                    </table>
+            <hr>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

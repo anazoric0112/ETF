@@ -1,0 +1,1 @@
+For creating new html pages use 'basis.html' under the 'frontend_basis' folder and modify the 'mainpage' div to create your page

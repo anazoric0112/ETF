@@ -1,0 +1,52 @@
+
+{% extends 'cityhopper/basis.html' %}
+
+
+
+{% block content %}
+    <link rel="stylesheet" href="/static/cityhopper/css/shared_styles.css" type="text/css">
+   <link rel="stylesheet" href="../../static/cityhopper/css/moderator_homepage_style.css" type="text/css">
+
+    <script src="/static/cityhopper/js/mod_edit_page.js"></script>
+<div class="container">
+    {% if msg and msg.id == -1 %}
+        <div class="row">
+                <div id="msg_data"  class="col-sm-6 offset-3 card_content heading">
+
+                        <h4 style="color: red"> {{msg.msg}} </h4>
+
+
+                </div>
+        </div>
+    {% endif %}
+<div class="card_content" style="width: 40%; margin: auto; float: none; margin-top:5% !important;">
+
+    <form style="width: 100%;" method="POST" action="/cityhopper/edit_town/{{ town.idto }}">
+        {% csrf_token %}
+        <label><h4>City Name:</h4></label>
+        {{ form.edit_lname }}
+        <!--<input name="lname" type="text" placeholder="Location Name" class="input_field"> !-->
+        <div id="edit_towns_div">
+            {% for r in roads %}
+                <div id="road_{{ forloop.counter }}" class="def_road" style="width: 100%">
+                    <hr>
+                    {% if r.idto1.idto == town.idto %}
+                        <label><h4>Road to {{ r.idto2 }}</h4></label>
+                    {% else %}
+                        <label><h4>Road to {{ r.idto1 }}</h4></label>
+                    {% endif %}
+                    <input name="dist_{{ r.idro }}" id="id_dist_{{ r.idro }}" type="text" class="input_field" value="{{ r.length }}">
+                    <label for="id_dist_{{ r.idro }}">Delete</label>
+                    <input name="del_{{ r.idro }}" id="id_del_{{ r.idro }}" type="checkbox">
+                </div>
+            {% endfor %}
+            <hr>
+            <h2>New Roads</h2>
+        </div>
+
+        <button id="new_town_more" type="button" style= "width: 100%;"><h3>+</h3></button>
+        <button style="width: 100%;" type="submit"><h3>Submit</h3></button>
+    </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+1) admin_profile, moderator_profile, passenger_profile:
+-dohvati user info
+2) admin_homepage:
+-prihvatanje/ne requestova za moderatora
+3) moderator_homepage:
+-napravi grad
+-promeni ime gradu
+-izbrisi grad
+-dodaj novo polje za susedni grad
+-dodaj novi put gradu
+4) driver_homepage:
+-create ride
+5) driver_profile:
+-dohvati komentare za vozaca
+6) driver_profile_private:
+-dohvati aktivne voznje
+-otkazi aktivnu voznju
+-dohvati zavrsene voznje
+7) passenger_profile_private:
+-dohvati sve aktivne rezervacije
+-cancel rezervaciju
+-dohvati zavrsene voznje
+-submit recenziju na zavrsenu voznju
+8) login:
+-login
+-logout
+-napravi korisnika
+-pravljenje requestova za moderatora
+9) passenger_homepage i after_search:
+-pretraga po from, to, datum, broj putnika
+-dijkstra :3
+-sort po ceni rastuce
+-sort po broju presedanja rastuce
+-sort po estimated vremenu rastuce
+-rezervisi voznju
+
+Celine:
+1.  9       Petar
+2.  8 2 1   savo
+3.  4 5 6   ana
+4.  3 7     ilija

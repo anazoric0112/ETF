@@ -1,0 +1,18 @@
+<!-- Authors : Petar Vasiljevic 0007/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+{#    <div class="container">#}
+{#    <div class="row">#}
+    <div class="card_content input_passenger">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div style="text-align:center" class="input_passenger" >
+                <button class="the_button" type="submit"> Search</button>
+            </div>
+        </form>
+    </div>
+{#    </div>#}
+{#    </div>#}
+{% endblock %}

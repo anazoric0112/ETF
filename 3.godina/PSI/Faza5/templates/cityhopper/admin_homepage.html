@@ -1,0 +1,27 @@
+<!-- Authors : Savo Cvijetic 0054/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+    <div class="card_container">
+        <div class="card_content heading card_heading">
+            <h2>Moderator requests</h2>
+        </div>
+        <div class="card_content" style="flex-direction: column; width: 100%;">
+            {% for mr in mod_req %}
+                <div class="request_item">
+                    {{ mr.username }}
+                    <br>
+                    {{ mr.first_name}} {{ mr.last_name }}
+                    <br>
+                    {{ mr.email }}
+                    {{ mr.phone }}
+                    {{ mr.form }}
+                    <div style="text-align:center">
+                        <button onclick="location.href='{% url 'accept_moderator' mr.id %}'" class="the_button"> Accept</button>
+                        <button onclick="location.href='{% url 'reject_moderator' mr.id %}'" class="the_button"> Decline</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

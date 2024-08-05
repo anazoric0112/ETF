@@ -1,0 +1,25 @@
+<!-- Authors : Savo Cvijetic 0054/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+    <div class="card_container">
+        <div class="card_content heading card_heading">
+            <h2>Change info</h2>
+        </div>
+        <div class="card_content" style="padding:20px">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div style="text-align:center">
+                    <button type="submit" class="the_button">Change</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card_content heading card_heading">
+            <div class="nav-item menu_drop_item">
+                <a class="nav-link menu_drop_link" href="{%  url 'change_password' %}">Change password here</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

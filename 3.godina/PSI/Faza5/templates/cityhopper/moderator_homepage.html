@@ -1,0 +1,89 @@
+<!-- Authors : Ilija Obradovic 0049/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+{% block title %}
+    <link rel="stylesheet" href="../../static/cityhopper/css/moderator_homepage_style.css" type="text/css">
+    <title>Homepage</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <script src="/static/cityhopper/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/cityhopper/js/mod_page.js"></script>
+
+    <div class="moderator_dashboard">
+
+        <div class="place_dash">
+            <div class="card_content heading">
+                <h2>Add Location</h2>
+            </div>
+            <div class="card_content">
+                <form style="width: 100%;" method="POST" action="add_town">
+                    {% csrf_token %}
+                    <label for="lname"><h4>Location Name:</h4></label>
+                    {{ form.lname }}
+                    <!--<input name="lname" type="text" placeholder="Location Name" class="input_field"> !-->
+                    <div id="towns_div">
+                        <div id="closest_town0" class="town" style="width: 100%">
+                            <label class="loc_town_lbl" for="cloc"><h4>Road 1:</h4></label>
+                            {{ form.cloc0 }}
+                            <label for="dist"><h4>Distance(in Km):</h4></label>
+                            <div style= "display: flex;flex-direction: row;">
+                                <!--<input style="width: 80%" name="dist" type="number" placeholder="1234.0" pattern="^\d*(\.\d{0,1})?$" class="input_field"> -->
+                                {{ form.dist_cloc0 }}
+                                <button id="erase0" class="the_button" style= "margin-left: 10px; width: 10%; height: 40px"><h3>-</h3></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="town_more" class="the_button" type="button" style= "width: 100%;"><h3>+</h3></button>
+                    <button class="the_button" style="width: 100%;"><h3>Submit</h3></button>
+                </form>
+            </div>
+        </div>
+
+{#        <div id="myModal" class="modal" style="box-sizing: border-box; display: none !important;" >#}
+{##}
+{#        </div>#}
+
+        <div class="place_dash">
+            <div class="card_content heading">
+                <h2>Edit Location</h2>
+            </div>
+
+            <div class="card_content">
+                <table class="place_table">
+                    <tr>
+                        <th colspan=4>
+
+                            <input id="sr_loc" type="text" placeholder="Search Locations" class="sr_field input_field" >
+
+                        </th>
+                    </tr>
+
+                    {% for town in towns %}
+                        <tr class="town_row fit_cont">
+                            <td>
+                                <h5> {{ town }}</h5>
+                            </td>
+                            <td>
+                                <button  class="edit_button the_button" id="edit_btn_{{ town.idto }}"
+                                        onclick="location.href='{% url 'edit_town' town.idto %}'"> Edit </button>
+                            </td>
+                            <td>
+                                <form method="POST" action="delete_town">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="town_id" value="{{ town.idto }}">
+                                    <button class="del_button the_button" name="del_button" value="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

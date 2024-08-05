@@ -1,0 +1,36 @@
+<!-- Authors : Ana Zoric 0009/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="info heading col-sm-3 offset-1">
+            <h2>User info</h2>
+        </div>
+
+        <div class="comments heading col-sm-5 offset-1">
+            <h2>Comments</h2>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="info col-sm-3 offset-1">
+        <table class="info_table">
+            <tr>
+
+                <td>Username:</td>
+                <td><b>{{ user_ }}</b></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>{{ name }}</td>
+            </tr>
+            <tr>
+                <td>Surname:</td>
+                <td>{{ surname }}</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+    </div>
+{% endblock %}

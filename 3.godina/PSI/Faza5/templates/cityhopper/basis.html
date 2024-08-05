@@ -1,0 +1,175 @@
+<!-- Authors : Petar Vasiljevic 0007/2020 !-->
+<!-- Authors : Ana Zoric 0009/2020 !-->
+<!-- Authors : Savo Cvijetic 0054/2020 !-->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/cityhopper/js/jquery-3.6.4.js"></script>
+    <link rel="stylesheet" href="/static/cityhopper/css/bootstrap.min.css">
+    <script src="/static/cityhopper/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="/static/cityhopper/css/shared_styles.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="/static/cityhopper/imgs/logo.png">
+    <script src="/static/cityhopper/js/script.js"></script>
+    <script src="/static/cityhopper/js/drives.js"></script>
+    {% block css %}
+    {% endblock %}
+
+    {% block title %}
+    <title>CityHopper</title>
+    {% endblock %}
+</head>
+
+<body onload="init()">
+    <div class="page" >
+        <div class="navigation">
+            <div class="logo col-sm-1" style="margin-right: 3%">
+                {% load static %}
+                <img src="/static/cityhopper/imgs/logo.png">
+            </div>
+
+            <ul class="nav-pills navigation col-sm-3"
+                style="background-color: rgba(255, 255, 255, 0) !important;
+                        font-size: 20px; padding-top: 15px">
+                {% if user_a %}
+                    <li class="nav-item menu_drop_item">
+                        <a class="nav-link menu_drop_link" href="{%  url 'admin_homepage' %}">Requests</a>
+                    </li>
+                {% endif %}
+                {% if user_m %}
+                    <li class="nav-item dropdown  menu_drop_item" >
+                        <a class="nav-link user decorated_link menu_drop_link" id="moderator_drop_icon"
+                             style="color: white" onclick="toggle_drop(3)">
+                            Cities
+                            <ul class="sub-menu-wrap" style="width: auto;" id="moderator_drop"  >
+
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'add_town' %}">Add a City</a>
+                                </li>
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'edit_town_get' %}">Modify Cities</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user_d %}
+                    <li class="nav-item dropdown  menu_drop_item" >
+                        <a class="nav-link user decorated_link menu_drop_link" id="driver_drop_icon"
+                             style="color: white" onclick="toggle_drop(2)">
+                            Drives
+                            <ul class="sub-menu-wrap" style="width: auto;" id="driver_drop"  >
+
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'driver_homepage' %}">Create a ride</a>
+                                </li>
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'active_drives' %}">Active</a>
+                                </li>
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'finished_drives' %}">Finished</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user_p %}
+
+                    <li class="nav-item menu_drop_item">
+                        <a class="nav-link menu_drop_link" href="{%  url 'passenger_homepage' %}">Search</a>
+                    </li>
+                    <li class="nav-item dropdown  menu_drop_item" >
+                        <a class="nav-link user decorated_link menu_drop_link" id="passenger_drop_icon"
+                             style="color: white" onclick="toggle_drop(4)">
+                            Reservations
+                            <ul class="sub-menu-wrap" style="width: auto;" id="passenger_drop"  >
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'active_ress' %}">Active</a>
+                                </li>
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'finished_ress' %}">Finished</a>
+                                </li>
+                                <li class="dropdown-item menu_drop_item">
+                                    <a class="dropdown-item decorated_link menu_drop_link"
+                                       href="{%  url 'canc_ress' %}">Cancelled</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+
+                {% endif %}
+            </ul>
+            {%  if user.is_authenticated %}
+            <div class="title offset-3 col-sm-2" >
+                <a href="{% url 'homepage' %}" class="decorated_link"><h1>CityHopper</h1> </a>
+            </div>
+
+            <div class="nav-item dropdown offset-1">
+            {% else %}
+                <div class="title col-sm-2" >
+                <a href="{% url 'homepage' %}" class="decorated_link"><h1>CityHopper</h1> </a>
+            </div>
+
+            <div class="nav-item dropdown offset-4">
+            {% endif %}
+
+                <a class="nav-link " id="user_drop_icon" onclick="toggle_drop(1)">
+                    {% if user.image %}
+                        <img src="{{ user.image.url }}" class="user_pic user" style="height:70px; width: 70px" ></img>
+                    {% else %}
+                        <img src="/static/cityhopper/imgs/user.png" class="user" >
+                    {% endif %}
+                    <ul class="sub-menu-wrap" style="width: auto;"
+                        id="user_drop"  >
+                    {% if user.is_authenticated %}
+
+                    <h5>{{ user.first_name }}  {{ user.last_name }}</h5>
+                        <li class="dropdown-item menu_drop_item">
+                            <a class="dropdown-item decorated_link menu_drop_link"
+                               href="{% url 'get_my_profile' %}">My profile</a>
+                        </li>
+                        <li class="dropdown-item menu_drop_item">
+                            <a class="dropdown-item decorated_link menu_drop_link"
+                               href="{% url 'change_info' %}">Change profile info</a>
+                        </li>
+                        <li class="dropdown-item menu_drop_item">
+                            <a class="dropdown-item decorated_link menu_drop_link"
+                               href="{% url 'logout' %}">Log out</a>
+                        </li>
+                    {% else %}
+                        <li class="dropdown-item menu_drop_item">
+                            <a class="dropdown-item decorated_link menu_drop_link"
+                               href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="dropdown-item menu_drop_item">
+                            <a class="dropdown-item decorated_link menu_drop_link"
+                               href="{% url 'signup' %}">Sign up</a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                </a>
+            </div>
+        </div>
+
+        <div class="mainpage">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            <p>© 2023 Pistaci - All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

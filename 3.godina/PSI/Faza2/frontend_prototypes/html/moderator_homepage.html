@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/shared_styles.css" type="text/css">
+    <link rel="stylesheet" href="../css/moderator_homepage_style.css" type="text/css">
+    <title>CityHopper</title>
+</head>
+
+<body>
+    <div class="page">
+        <div class="navigation">
+            <div class="logo">
+                <img src="../imgs/logo.png">
+            </div>
+
+            <div class="title">
+                <h1>CityHopper</h1>
+            </div>
+
+            <div class="user">
+                <img src="../imgs/user.png">
+            </div>
+        </div>
+
+        <div class="mainpage">
+            <div class="moderator_dashboard">
+
+                <div class="place_dash">
+                    <div class="card heading">
+                        <h2>Add Location</h2>
+                    </div>
+                    <div class="card">
+                        <form style="width: 100%;">
+                            <label for="lname"><h4>Location Name:</h4></label>
+                            <input name="lname" type="text" placeholder="Location Name" class="input_field">
+							
+							<label for="cloc"><h4>Closest Location 1:</h4></label>
+                            <select name="cloc" class="input_field">
+                                <option value="1">Beograd</option>
+                                <option value="2">Valjevo</option>
+                                <option value="3">Zaječar</option>
+
+                            </select>
+                            <label for="dist"><h4>Distance(in Km):</h4></label>
+							<div style= "display: flex;flex-direction: row;">
+								
+								<input style="width: 80%" name="dist" type="number" placeholder="1234.0" pattern="^\d*(\.\d{0,1})?$" class="input_field">
+								<button style= "margin-left: 10px; width: 10%; height: 40px"><h3>-</h3></button>
+							</div>
+							
+                            <label for="cloc"><h4>Closest Location 2:</h4></label>
+                            <select name="cloc" class="input_field">
+                                <option value="1">Beograd</option>
+                                <option value="2">Valjevo</option>
+                                <option value="3">Zaječar</option>
+
+                            </select>
+                            <label for="dist"><h4>Distance(in Km):</h4></label>
+							<div style= "display: flex;flex-direction: row;">
+								
+								<input style="width: 80%" name="dist" type="number" placeholder="1234.0" pattern="^\d*(\.\d{0,1})?$" class="input_field">
+								
+								<button style= "margin-left: 10px; width: 10%; height: 40px"><h3>-</h3></button>
+							</div>
+							<button style= "width: 100%;"><h3>+</h3></button>
+							<button style="width: 100%;"><h3>Submit</h3></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="place_dash">
+                    <div class="card heading">
+                        <h2>Edit Location</h2>
+                    </div>
+
+                    <div class="card">
+                        <table class="place_table">
+                            <tr>
+                                <th colspan=4>
+                                    <form>
+                                        <input type="text" placeholder="Search Locations" class="sr_field input_field" >
+                                    </form>
+                                </th>    
+                            </tr>
+                            
+                            
+                            <tr>
+
+                                <td>
+                                   <h3> Beograd </h3>
+                                </td>
+                                <td>
+                                    <input placeholder="New Name" class="input_field">
+                                </td>   
+                                <td>
+                                    <button> Submit </button> 
+                                </td>
+                                <td>
+                                    <button class="del_button">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                   <h3> Valjevo </h3>
+                                </td>
+                                <td>
+                                    <input placeholder="New Name" class="input_field">
+                                </td>   
+                                <td>
+                                    <button> Submit </button> 
+                                </td>
+                                <td>
+                                    <button class="del_button">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                   <h3> Zaječar </h3>
+                                </td>
+                                <td>
+                                    <input placeholder="New Name" class="input_field">
+                                </td>   
+                                <td>
+                                    <button> Submit </button> 
+                                </td>
+                                <td>
+                                    <button class="del_button">Delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                        
+
+                    </div>
+                </div>
+        
+            </div>  
+        </div>  
+
+        <footer>
+            <p>© 2023 Pistaci - All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

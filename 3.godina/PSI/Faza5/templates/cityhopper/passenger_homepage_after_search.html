@@ -1,0 +1,208 @@
+<!-- Authors : Petar Vasiljevic 0007/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+{% block title %}
+    <title>Search results</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="merged_info">
+        <div class="card_content">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div style="text-align:center" class="input_passenger">
+                    <button class="the_button" type="submit"> Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="card_content search_heading">
+            <div class="title_sort text-center">
+                <h2 class="title_sort">Results</h2>
+                {% if messages %}
+                    <ul class="reservation_messages" style="list-style-type: none;">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="sort_container">
+                <select name="sort" id="sort" class="input_field" style="width: fit-content !important;">
+                    <option>Number of rides (Lo-Hi)</option>
+                    <option>Price (Lo-Hi)</option>
+                    <option>Price (Hi-Lo)</option>
+                    <option>Time travelling (Lo-Hi)</option>
+                    <option>Time travelling (Hi-Lo)</option>
+                </select>
+                <label for="sort" id="label_sort" style="margin-top: 15px !important;">Sort: &nbsp &nbsp</label>
+            </div>
+        </div>
+        <script src="/static/cityhopper/js/jquery-3.7.0.min.js"></script>
+        <script src="/static/cityhopper/js/moment.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#sort').change(function(){
+                    let selected = $(this).val();
+                    let search_result_divs = $('.search_result')
+
+                    search_result_divs.sort(function(a, b){
+                        switch(selected) {
+                            case 'Price (Lo-Hi)':
+                                let a_value_lohi = parseFloat($(a).find('.price').text())
+                                let b_value_lohi = parseFloat($(b).find('.price').text())
+
+                                return a_value_lohi - b_value_lohi;
+                            case 'Price (Hi-Lo)':
+                                let a_value_hilo = parseFloat($(a).find('.price').text())
+                                let b_value_hilo = parseFloat($(b).find('.price').text())
+
+                                return b_value_hilo - a_value_hilo;
+                            case 'Time travelling (Lo-Hi)':
+                                let a_value_start_date = $(a).find('.start_date').text()
+                                let a_value_est_date = $(a).find('.est_date').text()
+                                let b_value_start_date = $(b).find('.start_date').text()
+                                let b_value_est_date = $(b).find('.est_date').text()
+
+                                if(a_value_est_date === 'None' || b_value_est_date === 'None'){
+                                    return 1;
+                                }
+
+                                date_format = 'MMMM DD, YYYY, h:mm a'
+                                let a_start_date = moment(a_value_start_date, date_format)
+                                let a_est_date = moment(a_value_est_date, date_format)
+                                let b_start_date = moment(b_value_start_date, date_format)
+                                let b_est_date = moment(b_value_est_date, date_format)
+
+                                let a_diff = moment.duration(a_est_date.diff(a_start_date));
+                                let b_diff = moment.duration(b_est_date.diff(b_start_date));
+                                return a_diff - b_diff;
+                            case 'Time travelling (Hi-Lo)':
+                                let a_value_start_date_hilo = $(a).find('.start_date').text()
+                                let a_value_est_date_hilo = $(a).find('.est_date').text()
+                                let b_value_start_date_hilo = $(b).find('.start_date').text()
+                                let b_value_est_date_hilo = $(b).find('.est_date').text()
+
+                                if(a_value_est_date_hilo === 'None' || b_value_est_date_hilo === 'None'){
+                                    return 1;
+                                }
+
+                                date_format = 'MMMM DD, YYYY, h:mm a'
+                                let a_start_date_hilo = moment(a_value_start_date_hilo, date_format)
+                                let a_est_date_hilo = moment(a_value_est_date_hilo, date_format)
+                                let b_start_date_hilo = moment(b_value_start_date_hilo, date_format)
+                                let b_est_date_hilo = moment(b_value_est_date_hilo, date_format)
+
+                                let a_diff_hilo = moment.duration(a_est_date_hilo.diff(a_start_date_hilo));
+                                let b_diff_hilo = moment.duration(b_est_date_hilo.diff(b_start_date_hilo));
+                                return b_diff_hilo - a_diff_hilo;
+                        }
+
+                    })
+
+                    $('.search_results').empty().append(search_result_divs)
+                })
+            })
+        </script>
+        <div class="search_results">
+            {% for drive in drives %}
+                <div class="search_result">
+                    <div class="search_result_ride" style="width: 100%">
+                        <table>
+                            <tr>
+                                <td>
+                                    {% if drive.idd.idd.image %}
+                                        <img src="{{drive.idd.idd.image.url}}" class="user user_pic"
+                                             onclick="location.href='/cityhopper/profile/{{ drive.idd.idd.id }}'">
+                                    {% else %}
+                                        <img src="/static/cityhopper/imgs/user.png" class="user"
+                                             onclick="location.href='/cityhopper/profile/{{ drive.idd.idd.id }}'">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <h3><u>{{ drive.idd.idd.username }}</u></h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>From: </h5>
+                                </td>
+                                <td>
+                                    <h5>{{ drive.idto1.name }}</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>To: </h5>
+                                </td>
+                                <td>
+                                    <h5>{{ drive.idto2.name }}</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Date: </h5>
+                                </td>
+                                <td>
+                                    <h5 class="start_date">{{ drive.datetime }}</h5>
+                                </td>
+                                <tr>
+                                    <td>
+                                        <h5>Estimated <br>arriving date: </h5>
+                                    </td>
+                                    <td>
+                                        {% if drive.estdatetime %}
+                                            <h5 class="est_date">{{ drive.estdatetime }}</h5>
+                                        {% else %}
+                                            <h5 class="est_date">Unknown</h5>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5>Price</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="price">{{ drive.price }} $</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5>Seats</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="seats">{{ drive.available }}</h5>
+                                    </td>
+                                </tr>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="the_button" onclick="show_buttons({{ drive.iddr }})">Reserve</button>
+                                </td>
+                            </tr>
+                            <tr id={{  drive.iddr }} hidden=true >
+                                <td>Are you sure?</td>
+                                <td>
+                                    <form action="/cityhopper/add_reservation/{{ drive.iddr }}?seats={{ drive.seats }}&price={{ drive.price }}" method="post">
+                                        {% csrf_token %}
+                                        <button id="accept_reservation" class="the_button" type="submit"> YES</button>
+                                    </form>
+                                    <button class="the_button del_button"
+                                        onclick="hide_buttons({{ drive.iddr }})"> NO</button>
+
+                                </td>
+
+                            </tr>
+                        </table>
+                        <br>
+                        <hr>
+                        <br>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

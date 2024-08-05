@@ -1,0 +1,162 @@
+<!-- Authors : Ilija Obradovic 0049/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block title %}
+    <title>CityHopper</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script src="../../static/cityhopper/js/pass_profile.js" ></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-6 offset-3 active_reservations heading_content">
+                    <h2>Active reservations</h2>
+
+                </div>
+
+            </div>
+            <div class="row">
+                {% if msg and msg.id == -1 %}
+                    <div id="msg_data" class="col-sm-6 offset-3 active_reservations heading_content">
+                        <h4 style="color: #d94141"> {{msg.msg}} </h4>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-sm-6 offset-3 active_reservations">
+                    {% for res in reservations %}
+                    <div class="reservation"  >
+                        <table>
+
+                            <tr>
+                                <td rowspan="3">
+                                    {% if res.iddr.idd.idd.image %}
+                                        <img src="{{res.iddr.idd.idd.image.url}}" class="user user_pic"
+                                             onclick="location.href='/cityhopper/profile/{{ res.iddr.idd.idd.id }}'">
+                                    {% else %}
+                                        <img src="/static/cityhopper/imgs/user.png" class="user"
+                                             onclick="location.href='/cityhopper/profile/{{ res.iddr.idd.idd.id }}'">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                <h4>Username: </h4>
+                                </td>
+                                <td>
+                                    <h4>{{ res.iddr.idd.idd.username }}</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <h6>From: </h6>
+                                </td>
+                                <td>
+                                    <h6>{{ res.iddr.idto1.name }}</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6>To: </h6>
+                                </td>
+                                <td>
+                                    <h6>{{ res.iddr.idto2.name }}</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6>Date: </h6>
+                                </td>
+                                <td>
+                                    <h6{{ res.iddr.datetime }}</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6>Price per seat: </h6>
+                                </td>
+                                <td>
+                                    <h6>{{ res.iddr.price }} $</h6>
+                                </td>
+                            </tr>
+                                <tr>
+                                <td>
+                                    <h6>Full price: </h6>
+                                </td>
+                                <td>
+                                    <h6>{{ res.price }} $</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6>Reserved seats: </h6>
+                                </td>
+                                <td>
+                                    <h6>{{ res.seats }}</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6>Seats left: </h6>
+                                </td>
+                                <td>
+                                    <h6>{{ res.iddr.available }}</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <form action="/cityhopper/cancel_res" method="POST" >
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id" value="{{ res.idrez }}">
+                                        <button class="the_button">Cancel</button>
+                                    </form>
+                                </td>
+
+                                    <form action="/cityhopper/update_res" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id" value="{{ res.idrez }}">
+                                        <td class="new_seats_data" style="display: none">{{ edit_form.new_seats }}</td>
+                                        <td class="new_seats_data" style="display: none"><span class="close" >&times;</span></td>
+                                        <td><button type="button" class="the_button update_btn_res">Change seat number</button></td>
+                                    </form>
+
+
+
+                            </tr>
+                            {% if msg and msg.id == res.idrez %}
+                            <tr id="msg_data">
+                                <td></td>
+                                <td>
+
+                                            <div style="color: #d94141">
+                                                {{ msg.msg }}
+                                            </div>
+
+                                </td>
+                            </tr>
+                        {% endif %}
+                        </table>
+                    </div>
+                        <br>
+                        <hr>
+                        <br>
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+{% endblock %}

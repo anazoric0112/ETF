@@ -1,0 +1,8 @@
+Faza5/.idea/*
+Faza5/Faza5/__pycache__/*
+*.bak
+*/db.sqlite3
+Faza5/CityHopper/__pycache__/
+Faza5/CityHopper/migrations/__pycache__/
+CityHopper/migrations/*
+Faza5/CityHopper/migrations/*

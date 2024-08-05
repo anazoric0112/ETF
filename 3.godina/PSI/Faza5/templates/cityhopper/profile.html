@@ -1,0 +1,65 @@
+<!-- Authors : Savo Cvijetic 0054/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="info heading col-sm-6 offset-3">
+            <h2>User info</h2>
+        </div>
+    </div>
+    <div class="row">
+    <div class="info col-sm-6 offset-3">
+            <table class="info_table">
+                <tr>
+                    <td rowspan="6" style="vertical-align: top !important;">
+                        {% if user_.image %}
+                            <img src="{{user_.image.url}}" class="user user_pic"
+                                 onclick="location.href='/cityhopper/profile/{{ user_.id }}'">
+                        {% else %}
+                            <img src="/static/cityhopper/imgs/user.png" class="user"
+                                 onclick="location.href='/cityhopper/profile/{{ user_.id }}'">
+                        {% endif %}
+
+                    </td>
+                    <td>First name:</td>
+                    <td>{{ user_.first_name }}</td>
+                </tr>
+                <tr>
+                    <td>Last name:</td>
+                    <td>{{ user_.last_name }}</td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{ user_.username }}</td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td>{{ user_.email }}</td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>{{ user_.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        {% if user_.gender == 0 %}
+                            Male
+                        {% else %}
+                            Female
+                        {% endif %}
+                    </td>
+                </tr>
+                {% block moderator_data %}
+                {% if moderator_req %}
+                <tr>
+                    <td colspan="3" class="text-center">{{moderator_req}}</td>
+                </tr>
+                {% endif %}
+                {% endblock %}
+            </table>  
+        </div>
+    </div>
+    </div>
+{% endblock %}

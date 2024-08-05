@@ -1,0 +1,43 @@
+<!-- Authors : Ana Zoric 0009/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+
+{% block content %}
+
+    <div class=" container">
+        <div class="row">
+            <div class="offset-4 col-sm-4">
+            <div class="card_content offset-2 col-sm-8" style="margin-top: 10%">
+                <br>
+            <h2 >Create ride</h2>
+        </div>
+            </div>
+        </div>
+    <br>
+        <div class="row" onload="clear_create_drive_form()">
+
+        <div class="offset-4 col-sm-4">
+            <div class="card_content offset-2 col-sm-8">
+            <form method="post" class="fit_cont" id="cd_form">
+                {% csrf_token %}
+                {{ form }}
+                <div style="text-align:center" >
+                    <button  class="the_button" type="submit"> Create</button>
+                </div>
+            </form>
+                </div>
+
+        </div>
+        </div>
+        {% if msg %}
+            <div class="row">
+            <div class="offset-4 col-sm-4">
+            <div class="card_content offset-2 col-sm-8 ">
+                {{ msg }}
+            </div>
+            </div>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

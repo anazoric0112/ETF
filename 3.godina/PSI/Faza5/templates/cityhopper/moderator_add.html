@@ -1,0 +1,52 @@
+<!-- Authors : Ilija Obradovic 0049/2020 !-->
+{% extends 'cityhopper/basis.html' %}
+{% block title %}
+    <link rel="stylesheet" href="../../static/cityhopper/css/moderator_homepage_style.css" type="text/css">
+    <title>CityHopper</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <script src="/static/cityhopper/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/cityhopper/js/mod_page.js"></script>
+
+    <div class="moderator_dashboard">
+
+        <div class="place_dash">
+            {% if msg and msg.id == -1 %}
+                    <div id="msg_data"  class="card_content heading">
+                        <h4 style="color: red"> {{msg.msg}} </h4>
+                    </div>
+            {% endif %}
+            <div class="card_content heading">
+                <h2>Add a City</h2>
+            </div>
+
+            <div class="card_content">
+                <form style="width: 100%;" method="POST" action="moderator_add">
+                    {% csrf_token %}
+                    <label for="lname"><h4>City Name:</h4></label>
+                    {{ form.lname }}
+                    <!--<input name="lname" type="text" placeholder="Location Name" class="input_field"> !-->
+                    <div id="towns_div">
+                        <div id="closest_town0" class="town" style="width: 100%">
+                            <label class="loc_town_lbl" for="cloc"><h4>Road 1:</h4></label>
+                            {{ form.cloc0 }}
+                            <label for="dist"><h4>Distance(in Km):</h4></label>
+                            <div style= "display: flex;flex-direction: row;">
+                                <!--<input style="width: 80%" name="dist" type="number" placeholder="1234.0" pattern="^\d*(\.\d{0,1})?$" class="input_field"> -->
+                                {{ form.dist_cloc0 }}
+                                <button id="erase0" class="the_button" style= "margin-left: 10px; width: 10%; height: 40px"><h3>-</h3></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="town_more" class="the_button" type="button" style= "width: 100%;"><h3>+</h3></button>
+                    <button class="the_button" style="width: 100%;"><h3>Submit</h3></button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

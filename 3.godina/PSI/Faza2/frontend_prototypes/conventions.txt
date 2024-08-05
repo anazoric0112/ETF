@@ -1,0 +1,11 @@
+Note: all of this can be changed in future
+
+Naming conventions:
+ * folder and file names are low capitalized and words are separated with underscore (_) 
+
+CSS:
+ * Modify all shared styles in shared_styles.css
+ * If some style is specific to a certain page then create new css file having the same name as html page but with suffix _style.
+ * It would be nice to have some convention around targeting elements that are being styled for example by providing absolute path to that element (it might be ugly though)
+
+
